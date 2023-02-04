@@ -1,0 +1,187 @@
+<div class="navbar row text-white">
+  <div class="col-md-8">
+    <div class="row product-section  ms-4">
+      <div class="col-md-4 logo"><a href="/">HomeKart</a></div>
+      <div class="col-md-3 adminpanel  mt-2">
+ <a href="/viewAllProducts/?page=1"> All Products</a></div>
+      <div class="col-md-3 adminpanel mt-1">deals</div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="row logo">
+      <div class="col-md-3 adminlogo"> <a href="/wishlist"><i class="ri-heart-3-line"></i></a></div>
+      <div class="col-md-3 adminlogo"> <a href="/cart"><i class="ri-shopping-cart-2-line"></a></i></div>
+      <div class="col-md-3 adminlogo"> <a href="/userProfile"><i class="ri-user-line"></i></a></div>
+      <div class="col-md-3 logout"><a href="/logout"><i class="ri-logout-box-r-line"></i></a></div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+
+<ul class="category-card col-md-12">
+
+  <li>
+   <a href="/category-furniture/?category=furnitures"> <div class="card furniture">Furnitures</div></a>
+  </li>
+  <li>
+   <a href="/category-furniture/?category=Kitchen Utilities"> <div class="card kitchen">Kitchen Utilities</div></a>
+  </li>
+  <li>
+   <a href="/category-furniture/?category=Home Appliances">  <div class="card home">Home Appliances</div></a>
+  </li>
+  <li>
+    <a href="/category-furniture/?category=Eletronic Items">  <div class="card eletrical">Eletric items</div></a>
+  </li>
+  <li>
+    <a href="/category-furniture/?category=Home Decors">  <div class="card decors">Home Decors</div></a>
+  </li>
+  <li>
+     <a href="/category-furniture/?category=Indoor Plants">  <div class="card plants">Indoor Plants</div></a>
+  </li>
+</ul>
+  </div>
+<div id="carouselExampleFade" class="carousel slide carousel-fade banners" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    {{#each banners}}
+    <div class="carousel-item active">
+    <img src="/images/{{this.banner}}" alt="" srcset="">
+    </div>
+    {{/each}}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+ <p class="mt-5 deals">Today the best deals for you</p>
+<div class="product-section  container w-100">
+ 
+  <div class=" container row d-flex align-items-center justify-content-center">
+{{#each products}}
+    <div class="col-md-2 pro-cards">
+      <div class="img-sec">
+         </div>
+        <img src="/images/{{this.product}}" alt="" srcset="">
+        <div class="pro-head"><h4>{{this.name}}</h4></div>
+        <div class="pro-category w-100" > <p>{{this.category}}</p></div>
+        <div class="pro-price"><h6> Rs {{this.price}}</h6></div>
+        <button class="btn btn-outline-success btn-lg btn-block pro-btn">Add to Cart</button>
+    </div>
+    {{/each}}
+  </div>
+</div>
+</div>
+
+
+<!-- Remove the container if you want to extend the Footer to full width. -->
+<div class=" my-2">
+  <!-- Footer -->
+  <footer class="text-center text-white" style="background-color: rgba(0, 0, 0, 0.701)">
+    <!-- Grid container -->
+    <div class="container">
+      <!-- Section: Links -->
+      <section class="mt-5">
+        <!-- Grid row-->
+        <div class="row text-center d-flex justify-content-between pt-5">
+          <!-- Grid column -->
+          <div class="col-md-2">
+            <h6 class="text-uppercase font-weight-bold">
+              <a href="#!" class="text-white">About us</a>
+            </h6>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2">
+            <h6 class="text-uppercase font-weight-bold">
+              <a href="#!" class="text-white">Products</a>
+            </h6>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2">
+            <h6 class="text-uppercase font-weight-bold">
+              <a href="#!" class="text-white">Awards</a>
+            </h6>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2">
+            <h6 class="text-uppercase font-weight-bold">
+              <a href="#!" class="text-white">Help</a>
+            </h6>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2">
+            <h6 class="text-uppercase font-weight-bold">
+              <a href="#!" class="text-white">Contact</a>
+            </h6>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row-->
+      </section>
+      <!-- Section: Links -->
+
+      <hr class="my-5" />
+
+      <!-- Section: Text -->
+      <section class="mb-5">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+              distinctio earum repellat quaerat voluptatibus placeat nam,
+              commodi optio pariatur est quia magnam eum harum corrupti
+              dicta, aliquam sequi voluptate quas.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- Section: Text -->
+
+      <!-- Section: Social -->
+      <section class="text-center mb-5">
+        <a href="" class="text-white me-4">
+         <i class="ri-facebook-fill"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="ri-twitter-line"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="ri-google-fill"></i>
+        </a>
+        <a href="" class="text-white me-4">
+          <i class="ri-instagram-line"></i>
+        </a>
+      
+      </section>
+      <!-- Section: Social -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div
+         class="text-center p-3"
+         style="background-color: rgba(0, 0, 0, 0.2)"
+         >
+      © 2020 Copyright:
+      <a class="text-white" href="https://mdbootstrap.com/"
+         >Homecart.com</a
+        >
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+</div>
+<!-- End of .container -->

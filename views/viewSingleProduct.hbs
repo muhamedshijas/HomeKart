@@ -1,0 +1,70 @@
+<div class="navbar row text-white">
+  <div class="col-md-8 col-sm-4">
+    <div class="row product-section  ms-4">
+      <div class="col-md-4 col-sm-2 logo"><a href="/">HomeKart</a></div>
+      <div class="col-md-3   col-sm-2  adminpanel  mt-2"><a href="/viewAllProducts/?page=1"> All Products</a></div>
+
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-8">
+    <div class="row logo">
+      <div class="col-md-3 col-sm-2 adminlogo"> <a href="/wishlist"><i class="ri-heart-3-line"></i></a></div>
+      <div class="col-md-3 col-sm-2 adminlogo"> <a href="/cart"><i class="ri-shopping-cart-2-line"></a></i></div>
+      <div class="col-md-3 col-sm-2 adminlogo"> <a href="/userProfile"><i class="ri-user-line"></i></a></div>
+      <div class="col-md-3 col-sm-2 logout"><a href="/logout"><i class="ri-logout-box-r-line"></i></a></div>
+    </div>
+  </div>
+</div>
+<div class="container">
+   
+    <div class="singleProductSection">
+    
+        <div class="row">
+          
+            <div class="col-md-6 singleImage">
+                <img src="/images/{{product.product}}" class="img-fluid" alt="">
+            </div>
+            <div class="col-md-6  productDetials">
+              <div class="wishSection d-flex w-100 justify-content-between">
+                <h2>{{product.name}}</h2>
+                <div class="wish heart"> <a href="/addtoWishList/{{product._id}}"><i class="ri-heart-3-line"></i></a></div>
+                </div>
+                
+                <h5>{{product.category}}</h5>
+                <p>{{product.description}}</p>
+                <h3>RS {{product.price}}.00</h3>
+
+                <a href="/addtoCart/{{product._id}}" class="btn btn-success">Add to Cart</a>
+            </div>
+   
+        </div>
+       
+    </div>
+<div class="recomended mt-5"><h3>Recomended Products</h3></div>
+
+       <div class=" container-fluid row d-flex align-items-center justify-content-around mt-5">
+{{#each recomendedProducts}}
+    <div class="col-md-2 pro-cards">
+      <div class="img-sec">
+         </div>
+        <img src="/images/{{this.product}}" alt="" srcset="">
+        <div class="pro-head"><h4>{{this.name}}</h4></div>
+        <div class="pro-category w-100" > <p>{{this.category}}</p></div>
+        <div class="pro-price"><h6> Rs {{this.price}}</h6></div>
+        <button class="btn btn-outline-success btn-lg btn-block pro-btn">Add to Cart</button>
+    </div>
+    {{/each}}
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

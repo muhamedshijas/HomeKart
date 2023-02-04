@@ -1,0 +1,100 @@
+<div class="navbar row text-white">
+  <div class="col-md-8">
+    <div class="row product-section  ms-4">
+      <div class="col-md-4 logo"><a href="/">HomeKart</a></div>
+      <div class="col-md-3 adminpanel  mt-2">
+ <a href="/viewAllProducts/?page=1"> All Products</a></div>
+      <div class="col-md-3 adminpanel mt-1">deals</div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="row logo">
+      <div class="col-md-3 adminlogo"> <a href="/wishlist"><i class="ri-heart-3-line"></i></a></div>
+      <div class="col-md-3 adminlogo"> <a href="/cart"><i class="ri-shopping-cart-2-line"></a></i></div>
+      <div class="col-md-3 adminlogo"> <a href="/userHome"><i class="ri-user-line"></i></a></div>
+      <div class="col-md-3 logout"><a href="/logout"><i class="ri-logout-box-r-line"></i></a></div>
+    </div>
+  </div>
+</div>
+
+<div class="checkoutSection row container-fluid">
+    <div class="col-md-6  ms-3 mt-5 container-fluid">
+        <table class="table tableCart">
+  <tbody>
+    {{#each products}}
+    <tr>
+
+      <td><img src="/images/{{this.product}}" alt="">  {{this.name}}</td>
+      <td></td>
+      <td>Rs {{this.price}}</td>
+      <td><a href="/removeFromCart/{{this._id}}" style="text-decoration: none; color:black"> <i class="ri-close-circle-fill"></i></a> </td>
+    </tr>
+    {{/each}}
+
+    <tr>
+        <td></td>
+        <td><h6>Amount</h6></td>
+        <td><h6>Rs {{totalPrice}}</h6></td>
+    </tr>
+     <tr>
+        <td></td>
+        <td>Discount<h6></h6></td>
+        <td><h6>Rs 0.00</h6></td>
+    </tr>
+     <tr>
+        <td></td>
+        <td><h5>Total</h5></td>
+        <td><h5>Rs {{totalPrice}}</h5></td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+
+    <div class="col-md-5 mt-5 container ms-3 my-2 checkoutCard">
+        <h3 class="text-white text-center mt-3">Order Summary</h3>
+          <form action="/checkCoupon" method="post" class="d-flex flex-column align-items-center couponAdd">
+            <h3 class="text-white">Add Coupons</h3>
+            <label for="" class="text-white">Coupon code</label>
+            <input type="text" name="coupon"  class="w-50 mt-2">
+            <button type="submit">Submit</button>
+        </form>
+         <table class="table tableCart paymentTable  text-white">
+            <tr>
+        <td></td>
+        <td><h6>Amount</h6></td>
+        <td><h6>Rs{{totalPrice}}</h6></td>
+    </tr>
+     <tr>
+        <td></td>
+        <td>Discount<h6></h6></td>
+       {{#if discount}}
+        <td><h6>Rs {{discount}}</h6></td>
+        {{else}}
+          <td><h6>Rs 0.00</h6></td>
+        {{/if}}
+    </tr>
+     <tr>
+        <td></td>
+        <td><h5>Total</h5></td>
+        {{#if totalAmount}}
+        <td><h5>Rs {{totalAmount}}</h5></td>
+        {{else}}
+        <td><h5>Rs {{totalPrice}}</h5></td>
+        {{/if}}
+    </tr>
+        </table>
+      
+        <form action="/pay" method="post">
+     <h5 class="text-white mt-5 ms-4">payment Methord</h5>
+        <div class="row paymentType ">
+            <div class="col-md-5 text-white paymentCard" >
+                <input type="radio" name="Online Pay" id="" value="NetBanking">Net Banking
+            </div>
+             <div class="col-md-5  text-white paymentCard">
+                <input type="radio" name="Online Pay" id="" value="NetBanking">Cash On delivery
+            </div>
+          <button class="btn btn-light w-50 mt-4" type="submit" >PAY NOW</button>
+        </div>
+        </form>
+    </div>
+</div>

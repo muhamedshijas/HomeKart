@@ -1,0 +1,75 @@
+<div class="navbar row text-white">
+  <div class="col-md-8">
+    <div class="row product-section  ms-4">
+      <div class="col-md-4 logo"><a href="/">HomeKart</a></div>
+      <div class="col-md-3 adminpanel  mt-2">
+ <a href="/viewAllProducts/?page=1"> All Products</a></div>
+      <div class="col-md-3 adminpanel mt-1"> 
+        <form action="/allProSearch" method="get">
+            <div class="search-form">
+            <input type="text" placeholder="Search Here" name="product">
+            <button type="submit"><i class="ri-search-line"></i></button>
+            </div>
+            </form></div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="row logo ">
+      <div class="col-md-3 adminlogo"> <a href="/wishlist"><i class="ri-heart-3-line"></i></a></div>
+      <div class="col-md-3 adminlogo"> <a href="/cart"><i class="ri-shopping-cart-2-line"></a></i></div>
+      <div class="col-md-3 adminlogo"> <a href="/userProfile"><i class="ri-user-line"></i></a></div>
+      <div class="col-md-3 logout"><a href="/logout"><i class="ri-logout-box-r-line"></i></a></div>
+    </div>
+  </div>
+</div>
+
+        </form>
+<div class="d-flex container-fluid row mt-5">
+ 
+  <div class="proSide-bar d-flex flex-column col-md-2 col-sm-2">
+    <form action="/sort" method="get" class="ms-5 d-flex flex-column sort-form">
+   <h6>Sort Items</h6>
+    <select name="sort" id="">
+      <option value="Default"> Default</option>
+      <option value="h to l"> price:High to Low</option>
+      <option value="l to h"> price:Low to High</option>
+    </select>
+    <button type="submit">ok</button>
+  </form>
+  <form action="/filter" method="get" class="ms-5 d-flex flex-column sort-form mt-3">
+   <h6>Filter Items</h6>
+   <p>By Category</p>
+    <select name="filter" id="">
+      
+      <option value="Defualt"> Default</option>
+      {{#each categories}}
+      <option value="{{this.category}}">{{this.category}}</option>
+  {{/each}}
+    </select>
+    <button type="submit">ok</button>
+  </form>
+</div>
+  <div class=" container  row d-flex align-items-center justify-content-center col-md-10 col-sm-12">
+{{#each products}}
+
+     <div class="col-md-2 col-sm-2 pro-cards">
+      <a href="/singleProduct/{{this._id}}"> 
+      <div class="img-sec">
+         </div>
+        <img src="/images/{{this.product}}" alt="" srcset="">
+        <div class="pro-head"><h4>{{this.name}}</h4></div>
+        <div class="pro-category w-100" > <p>{{this.category}}</p></div>
+        <div class="pro-price"><h6> Rs {{this.price}}</h6></div>
+        <button class="btn btn-outline-success btn-lg btn-block pro-btn">Add to Cart</button>
+        </a>
+    </div>
+       
+    {{/each}}
+   
+
+  </div>
+</div>
+ <div class="paginate">
+  <a href="/viewAllProducts/?page=1">1</a>
+  <a href="/viewAllProducts/?page=2">2</a>
+ </div>

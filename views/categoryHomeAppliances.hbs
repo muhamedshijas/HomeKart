@@ -1,0 +1,39 @@
+<div class="navbar row text-white">
+  <div class="col-md-8">
+    <div class="row product-section  ms-4">
+      <div class="col-md-4 logo">HomeKart</div>
+      <div class="col-md-6 adminpanel">
+        <form action="/categoryHomeProSearch" method="post">
+            <div class="search-form">
+            <input type="text" placeholder="Search Here" name="product">
+            <button type="submit"><i class="ri-search-line"></i></button>
+            </div>
+        </form>
+        </div>
+    </div>
+  </div>
+  <div class="col-md-2 mt-0">
+    <div class="row logo">
+      <div class="col-md-6 adminlogo"><i class="ri-user-line"></i></div>
+      <div class="col-md-6 logout"><a href="/logout"><i class="ri-logout-box-r-line"></i></a></div>
+    </div>
+  </div>
+</div>
+
+<div class="category-head container d-flex align-items-center justify-content-center mt-5"><h3>Home Appliances</h3></div>
+
+<div class="container">
+    {{#each products}}
+<div class="categoryProCards row ">
+    <div class="col-md-3">
+        <img src="/images/{{this.product}}" alt="">
+    </div>
+    <div class="col-md-7">
+        <h3>{{this.name}}</h3>
+        <div class="wish d-flex w-100 justify-content-between"><p>{{this.category}}</p>  <div class="heart"><i class="ri-heart-line"></i></div></div>
+        <h5>{{this.price}}</h5>
+        <button class="btn btn-success w-25">Add to Cart</button>
+    </div>
+</div>
+{{/each}}
+</div>

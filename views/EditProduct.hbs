@@ -1,0 +1,108 @@
+<div class="navbar row text-white">
+  <div class="col-md-8">
+    <div class="row ms-4">
+      <div class="col-md-6 logo">HomeKart</div>
+      <div class="col-md-6 adminpanel mt-1">AdminPanel</div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="row logo">
+      <div class="col-md-6 adminlogo"><i class="ri-user-line"></i></div>
+      <div class="col-md-6 logout"><a href="/admin/logout"><i
+            class="ri-logout-box-r-line"
+          ></i></a></div>
+    </div>
+  </div>
+</div>
+
+<form
+   action="/admin/editProduct" method="post" enctype="multipart/form-data" 
+  class="product-add container d-flex flex-column w-50"
+>
+  <H3 class="text-center">Edit Products</H3>
+  <label for="">Product name</label>
+  <input
+    type="text"
+    name="name"
+    class="namefield"
+    value="{{productDetials.name}}"
+  />
+         <input
+        type="text"
+        value={{productDetials._id}}
+        class="form-control"
+        name="_id"
+        style="height: 0px; visibility:hidden"
+      />
+  <label for="">Product Category</label>
+  <select
+    name="category"
+    id=""
+    class="dropdown"
+    value={{productDetails.category}}
+  >
+  {{#each category}}
+    <option nvalue={{this.category}}>{{this.category}}
+    
+    </option> 
+    {{/each}}
+  </select>
+  <div class="pro-img-qua d-flex justify-content-around">
+    <div class="qua">
+      <label for="">Quantity</label>
+      <input
+        type="number"
+        name="quantity"
+        class="namefield"
+        value={{productDetials.quantity}}
+      />
+    </div>
+    <div class="price">
+      <div class="qua">
+        <label for="">Price</label>
+        <input
+          type="number"
+          name="price"
+          class="namefield"
+          value={{productDetials.price}}
+        />
+      </div>
+    </div>
+  </div>
+  <label for="" class="ms-4">Choose Image:</label>
+  <div class="img">
+
+    <img
+      src="http://localhost:2555/images/{{productDetials.product}}"
+      id="image"
+      style="height: 100px;"
+      alt=""
+    />
+  </div>
+  <input
+    type="file"
+    name="product"
+    class="namefield ms-4"
+    id="editedImage"
+    onchange="changeimage()"
+  />
+  <label for="">Description</label>
+  <input
+    type="text"
+    name="description"
+    class="namefield"
+    value={{productDetials.description}}
+  />
+  <button type="submit" class="btn btn-success">Adddd</button>
+
+</form>
+<script>
+  function changeimage(){ 
+    const file=document.getElementById('editedImage').files[0]; 
+  var binaryData = [];
+  binaryData.push(file); 
+  var imageData=window.URL.createObjectURL(new Blob(binaryData, {type:"application/zip"}))
+  console.log(imageData)
+  document.getElementById('image').src=imageData;
+   }
+</script>

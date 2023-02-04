@@ -1,0 +1,44 @@
+<div class="navbar row text-white">
+  <div class="col-md-8">
+    <div class="row   ms-4">
+      <div class="col-md-6 logo">HomeKart</div>
+      <div class="col-md-6 adminpanel mt-1">AdminPanel</div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="row logo">
+      <div class="col-md-6 adminlogo"><i class="ri-user-line"></i></div>
+      <div class="col-md-6 logout"><a href="/admin/logout"><i class="ri-logout-box-r-line"></i></a></div>
+    </div>
+  </div>
+</div>
+<form action="/admin/productAdd" method="post" enctype="multipart/form-data" class=" product-add container d-flex flex-column w-50"  >
+    <H3 class="text-center ">Add Products</H3>
+    <label for="">Product  name</label>
+    <input type="text" name="name" class="namefield">      
+    <label for="">Product Category</label>
+    <select name="category" id="" class="dropdown">
+        {{#each category}}
+        <option value={{this.category}}>{{this.category}}</option>
+        {{/each}}
+    </select>
+    <div class="pro-img-qua d-flex justify-content-around">
+       <div class="qua"> <label for="">Quantity</label>
+    <input type="number" name="quantity" class="namefield">
+    </div>
+    <div class="price">
+       <div class="qua"> <label for="">Price</label>
+    <input type="number" name="price" class="namefield">
+    </div>
+  </div>
+    </div>
+    <label for="" class="ms-4">Choose Image:</label>
+  <input type="file" name="image" class="namefield ms-4"/ accept="image/png, image/jpeg, image/jpg, image/webp">
+<p class="text-danger">{{err}}</p>
+
+  <label for="" class="ms-4">Choose Another  Image:</label>
+  <input type="file" name="subImages" multiple class="namefield ms-4"/>
+  <label for="">Description</label>
+    <input type="text" name="description" class="namefield"> 
+  <button type="submit" class="btn btn-success">Adddd</button>
+</form>

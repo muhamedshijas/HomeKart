@@ -1,0 +1,29 @@
+<div class="navbar row text-white">
+  <div class="col-md-8">
+    <div class="row   ms-4">
+      <div class="col-md-6 logo">HomeKart</div>
+      <div class="col-md-6 adminpanel mt-1">AdminPanel</div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="row logo">
+      <div class="col-md-6 adminlogo"><i class="ri-user-line"></i></div>
+      <div class="col-md-6 logout"><a href="/admin/logout"><i class="ri-logout-box-r-line"></i></a></div>
+    </div>
+  </div>
+</div>
+
+<div class="container category">
+    <form action="/admin/add" method="post" class="category-form">
+        <h3>Add new Category</h3>
+        <h6 class="text-warning">{{errMsg}}</h6>
+        <div class="add">
+        <input type="text" placeholder="Add a new category" name="category">
+        <button class="btn btn-success add-btn" type="submit">Add</button>
+        </div>
+    </form>
+   
+  </div>
+
+
+</div>

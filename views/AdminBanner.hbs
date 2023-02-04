@@ -1,0 +1,56 @@
+<div class="navbar row text-white">
+  <div class="col-md-8">
+    <div class="row   ms-4">
+      <div class="col-md-6 logo">HomeKart</div>
+      <div class="col-md-6 adminpanel mt-1">AdminPanel</div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="row logo">
+      <div class="col-md-6 adminlogo"><i class="ri-user-line"></i></div>
+      <div class="col-md-6 logout"><a href="/admin/logout"><i class="ri-logout-box-r-line"></i></a></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="admin-section">
+  
+    <div class="sidebar p-4 ps-0 text-center">
+    <a href="/admin/" style="color:black">Dashboard</a>
+    <a href="/admin/category" style="color:black;">Categories</a>
+   <a href="/admin/product" style="color:black">Products</a>
+     <a href="/admin/user" style="color:black">Users</a>
+    <a href="#" style="color:#51624F">Banners</a>
+    <a href="/admin/orders" style="color:black">Orders</a>
+    <a href="/admin/banned" style="color:black">Banned Users</a>
+</div>
+
+
+
+  <div class="container">
+    <div class="row container product-btn mt-5">
+        <div class="col-md-3 product-btn">
+          <a href="/admin/addBanner " class="btn btn-dark"> Add Banner</a>
+        </div>
+    </div>
+<h2 class="text-center"> coupons</h2>
+    <table class="table banner mt-2" >
+  <thead class="bg-dark text-white">
+    <tr>
+      <th scope="col">Banner Name</th>
+      <th scope="col">Image</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each banners}}
+    <tr>
+      <td>{{this.name}}</td>
+      <td><img src="/images/{{this.banner}}"  class="bannerImg"alt="" srcset=""></td>
+<td>  <a href="/admin/bannerDelete/{{this._id}}" class="btn btn-danger">Delete</a></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+ </div>

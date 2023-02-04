@@ -1,0 +1,18 @@
+<div class="section col-xs-1"> 
+    <div class="container login ">
+<form class="userlogin" method="post" action="/admin/logsubmit">
+
+    <h2 class="head">Admin</h2>
+    <p class="text-danger text-center">{{adminErr}}</p>
+    <p class="text-danger text-center">{{adminFillErr}}</p>
+  <div class="mb-3 mt-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+  <div class="mb-3 mt-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+  </div>
+  <button type="submit" class="btn submit btn-primary w-100 mt-4">Submit</button>
+</form>
+</div>
+</div>

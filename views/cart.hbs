@@ -1,0 +1,101 @@
+<div class="navbar  container-fluid row text-white">
+  <div class="col-md-8">
+    <div class="row product-section  ms-4">
+      <div class="col-md-4 logo"><a href="/">HomeKart</a></div>
+      <div class="col-md-3 adminpanel  mt-2">
+ <a href="/viewAllProducts/?page=1"> All Products</a></div>
+      <div class="col-md-3 adminpanel mt-1">deals</div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="row logo">
+      <div class="col-md-3 adminlogo"> <a href="/wishlist"><i class="ri-heart-3-line"></i></a></div>
+      <div class="col-md-3 adminlogo"> <a href="/cart"><i class="ri-shopping-cart-2-line"></a></i></div>
+      <div class="col-md-3 adminlogo"> <a href="/userProfile"><i class="ri-user-line"></i></a></div>
+      <div class="col-md-3 logout"><a href="/logout"><i class="ri-logout-box-r-line"></i></a></div>
+    </div>
+  </div>
+</div>
+
+<div class="p-5 row container-fluid">
+  <div class="col-md-6 col-sm-12  mt-1">
+   {{#each products}}
+    <div class=" mt-5 container-fluid row ms-2">
+      <div class="col-md-4 cartCard">
+        <img src="/images/{{this.product}}" class="img-fluid" alt="" srcset="">
+      </div>
+      <div class="col-md-8 cart">
+        <h3>{{this.name}}</h3>
+        <h5 style="color: rgba(0, 0, 0, 0.526);">{{this.category}}</h5>
+        Quantity: <button class="me-2" onclick="sub()">-</button> <b id="quantity">2</b><button class="ms-2" onclick="add()">+</button>
+        <h4>{{this.price}}</h4>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+
+  <div class="col-md-6 col-sm-4 mt-1 container-fluid"> 
+    <h3 class="text-center">Order Summary</h3>
+  <table class="table tableCart mt-5">
+   
+  <thead>
+    <tr>
+     
+      <th scope="col">Item</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+     {{#each products}}
+    <tr>
+    
+      <td>{{this.name}}</td>
+      <td>1</td>
+      <td>{{this.price}}</td>
+    </tr>
+    {{/each}}
+    <tr class="total">
+      <td>
+
+      </td>
+      <td>4</td>
+      <td>{{totalPrice}}</td>
+    </tr>
+  </tbody>
+  <tr>
+    <td>Discount</td>
+    <td></td>
+    <td>0.00</td>
+  </tr>
+   <td>Delivery Charge</td>
+    <td></td>
+    <td>40.00</td>
+  </tr>
+    </tr>
+   <td> <h4>Total Amount</h4> </td>
+    <td></td>
+    <td> <h4> {{totalPrice}}</h4></td>
+  </tr>
+</table>
+<div class="orderBtns d-flex  row justify-content-between ms-5">
+  <div class="row"></div>
+  <a href="/checkOut" class="btn btn-success col-sm-5">ChecK Out</a>
+  <button class="btn btn-outline-success col-sm-5 cancelbtn">Cancel</button>
+</div>
+
+</div>
+</div>
+
+<script>
+  var a=(parseInt(document.getElementById('quantity').innerText))
+  function add(){
+    console.log(a)
+  a++
+ document.getElementById('quantity').innerText=a
+  }
+  function sub(){
+    a--
+    document.getElementById('quantity').innerText=a
+  }
+</script>

@@ -1,0 +1,29 @@
+
+<div class="otp">
+<div class="container category ">
+    <form action="/verify-otp" method="post" class="category-form">
+        <h3>Otp Verification</h3>
+        <p class="text-primary">please enter the otp that is sent to your email </p>
+        <div class="add">
+        <input type="text" placeholder="Enter the OTP" name="name" value="{{name}}" style="height:0px; visibility:hidden">
+        <input type="text" placeholder="Enter the OTP" name="email" value="{{email}}" style="height:0px; visibility:hidden">
+        <input type="text" placeholder="Enter the OTP" name="PhoneNo" value="{{PhoneNo}}" style="height:0px; visibility:hidden">
+        <input type="text" placeholder="Enter the OTP" name="password" value="{{password}}" style="height:0px; visibility:hidden">
+        <input type="text" placeholder="Enter the OTP" name="otp">
+     
+        <button class="btn btn-success add-btn" type="submit">Enter</button>
+
+           {{#if error}}
+        <b class="text-danger">
+            {{message}}
+        </b>
+        {{/if}}
+        </div>
+          <a href="/reset/{{email}}/{{password}}/{{PhoneNo}}/{{name}}" class="mt-2" style="text-decoration: none;">Resend OTP</a>
+    </form>
+ 
+    </ul>
+
+
+</div>
+</div>

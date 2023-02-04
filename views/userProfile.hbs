@@ -1,0 +1,52 @@
+<div class="navbar row text-white">
+  <div class="col-md-8">
+    <div class="row product-section  ms-4">
+      <div class="col-md-4 logo"><a href="/">HomeKart</a></div>
+      <div class="col-md-3 adminpanel  mt-2">
+ <a href="/viewAllProducts/?page=1"> All Products</a></div>
+      <div class="col-md-3 adminpanel mt-1">deals</div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="row logo">
+      <div class="col-md-3 adminlogo"> <a href="/wishlist"><i class="ri-heart-3-line"></i></a></div>
+      <div class="col-md-3 adminlogo"> <a href="/cart"><i class="ri-shopping-cart-2-line"></a></i></div>
+      <div class="col-md-3 adminlogo"> <a href="/userProfile"><i class="ri-user-line"></i></a></div>
+      <div class="col-md-3 logout"><a href="/logout"><i class="ri-logout-box-r-line"></i></a></div>
+    </div>
+  </div>
+</div>
+<div class="row">
+    <div class="sidebar userProfile  col-md-2 p-4 ps-0 text-center">
+    <div class="profileSection ms-3">
+        <img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" alt="">
+        <h4>{{user.name}}</h4>
+        <h6>{{user.email}}</h6>
+       <a href="/forgetPassword">Change Password</a>
+       <a href="/logout">Logout</a>
+    </div>
+
+    <div class="profileAction  ms-3"><a href="/wishlist">Wishlist</a></div>
+    <div class="profileAction  ms-3"><a href="/cart">Carts</a></div>
+    <div class="profileAction  ms-3"><a href="/orders">Orders</a></div>
+</div>
+
+<div class="addressSection col-md-8 container-fluid">
+<div class="row">
+{{#each address}}
+<div class="addressCard col-md-6">
+  <ul class="addressList">
+    <li class="userName">{{this.name}}</li>
+    <li>{{this.Address}}</li>
+    <li>{{this.city}}</li>
+    <li>{{this.landMark}}</li>
+     <li>{{this.pincode}}</li>
+    <li>{{this.phone}}</li>
+    <li><a href="/removeAddress/{{this.id}}">Delete</a></li>
+  </ul>
+</div>
+{{/each}}
+</div>
+  <a href="/addAddress">Add address</a>
+</div>
+</div>

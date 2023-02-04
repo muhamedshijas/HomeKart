@@ -1,0 +1,35 @@
+<div class="section col-xs-1"> 
+    <div class="container signup ">
+<form class="userlogin" method="post" action="/signup">
+    <h2 class="head mt-5">Sign up here</h2>
+  <p class="text-danger">{{fieldRequiered}}</p>
+  <p class="text-danger text-center">{{passworderr}}</p>
+  <p class="text-danger text-center">{{noUser}}</p>
+  <p class="text-danger text-center">{{banErr}}</p>
+  <p class="text-danger text-center">{{duplicate}}</p>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label" >UserName</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name"></div>
+     <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email"></div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Phone NO</label>
+    <input type="text" maxlength="10" minlength="10"  class="form-control phone" id="exampleInputPassword1" name="PhoneNo" />
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="passwordconfirm" >
+  </div>
+  <button type="submit" class="btn submit btn-primary w-100 mt-2">Submit</button>
+  <div class="message ">
+    <p>Don't you have an account</p>
+    <a href="/login">Login Here</a>
+  </div>
+</form>
+</div>
+</div>

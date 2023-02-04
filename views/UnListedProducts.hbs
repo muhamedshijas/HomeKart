@@ -1,0 +1,57 @@
+<div class="navbar row text-white">
+  <div class="col-md-8">
+    <div class="row   ms-4">
+      <div class="col-md-6 logo">HomeKart</div>
+      <div class="col-md-6 adminpanel mt-1">AdminPanel</div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="row logo">
+      <div class="col-md-6 adminlogo"><i class="ri-user-line"></i></div>
+      <div class="col-md-6 logout"><a href="/admin/logout"><i class="ri-logout-box-r-line"></i></a></div>
+    </div>
+  </div>
+</div>
+<div class="admin-section">
+    <div class="sidebar p-4 ps-0 text-center">
+   <a href="/admin/" style="color:black">Dashboard</a>
+   <a href="/admin/category">Categories</a>
+    <a href="/admin/product" style="color:#51624F">Products</a>
+    <a href="/admin/user" style="color:black">Users</a>
+  <a href="#" style="color:black">Banners</a>
+    <a href="/admin/orders" style="color:black">Orders</a>
+    <a href="/admin/banned">Banned Users</a>
+    
+</div>
+
+<div class="container">
+  
+<h2 class="text-center">UnListed Products</h2>
+    <table class="table mt-2" >
+  <thead class="bg-dark text-white">
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Quantity</th>
+      
+      <th scope="col">Price</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each unListedproducts}}
+    <tr>
+      <td scope="row"><img src="/images/{{this.product}}" alt=""></td>
+      <td>{{this.name}}</td>
+      <td>{{this.category}}</td>
+      <td>{{this.quantity}}</td>
+      <td>{{this.price}}</td>
+      <td> <a href="/admin/list/{{this._id}}" class="btn btn-warning">list</a></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<a href="/admin/product" class="btn btn-dark">View Products</a>
+</div>

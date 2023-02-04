@@ -1,0 +1,38 @@
+<div class="navbar row text-white">
+  <div class="col-md-8">
+    <div class="row product-section  ms-4">
+      <div class="col-md-4 logo"><a href="/">HomeKart</a></div>
+      <div class="col-md-3 adminpanel  mt-2">
+ <a href="/viewAllProducts/?page=1"> All Products</a></div>
+      <div class="col-md-3 adminpanel mt-1">deals</div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="row logo">
+      <div class="col-md-3 adminlogo"> <a href="/wishlist"><i class="ri-heart-3-line"></i></a></div>
+      <div class="col-md-3 adminlogo"> <a href="/cart"><i class="ri-shopping-cart-2-line"></a></i></div>
+      <div class="col-md-3 adminlogo"> <a href="/userProfile"><i class="ri-user-line"></i></a></div>
+      <div class="col-md-3 logout"><a href="/logout"><i class="ri-logout-box-r-line"></i></a></div>
+    </div>
+  </div>
+</div>
+
+<div class="category-head container d-flex align-items-center justify-content-center mt-5"><h3>My Wishlist</h3></div>
+<div class="containerfluid p-5">
+
+{{#each products}}
+<div class="categoryProCards row container-fluid">
+    <div class="col-md-3 col-sm-12">
+        <img src="/images/{{this.product}}" class="img-fluid" alt="">
+    </div>
+    <div class="col-md-7 col-sm-12">
+        <h3>{{this.name}}</h3>
+        <div class="wish d-flex w-100 justify-content-between"><p>{{this.category}}</p> 
+         <div class="heart"> <a href="/removeFromWishlist/{{this._id}}"><i class="ri-heart-fill"></i></a></div>
+        </div>
+        <h5>Rs {{this.price}}<h5>
+        <button class="btn btn-success  col-md-4 col-sm-12 ">Add to Cart</button>
+    </div>
+</div>
+{{/each}}
+</div>
