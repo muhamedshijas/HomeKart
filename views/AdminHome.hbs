@@ -12,16 +12,180 @@
     </div>
   </div>
 </div>
+
 <div class="admin-section">
     <div class="sidebar p-4 ps-0 text-center">
    <a href="/admin/" style="color:#51624F">Dashboard</a>
    <a href="/admin/category">Categories</a>
-    <a href="/admin/product" style="color:black">Products</a>
-    <a href="/admin/user" style="color:black">Users</a>
+    <a href="/admin/product/?page=1" style="color:black">Products</a>
+    <a href="/admin/user" style="color:black">Staffs</a>
     <a href="/admin/banner" style="color:black">Banners</a>
     <a href="/admin/orders" style="color:black">Orders</a>
     <a href="/admin/coupons" style="color:black">Coupons</a>
-    <a href="/admin/banned" style="color:black">Banned Users</a>
-    
-    
+    <a href="/admin/salesReport" style="color:black">Sales Report</a>
+       
 </div>
+<div class="container dashbordAdmin">
+    <div class="orderCards">
+    <div class="cards dashboard">
+      <img src="/images/revenue.png" alt="">
+        <h4>Total Revenue</h4>
+        <h1 class="text-success">Rs {{totalRevenue}}</h1>
+    </div>
+    <div class="cards dashboard">
+      <img src="/images/discount.png" alt="">
+        <h4 class="text-center">Total Discount Given</h4>
+        <h1 class="text-warning">Rs {{totalDiscount}}</h1>
+    </div>
+    <div class="cards dashboard">
+      <img src="/images/user..png" alt="">
+        <h4>Total Users</h4>
+        <h1 class="text-secondary">{{userCount}}</h1>
+        </div>
+    <div class="cards dashboard">
+      <img src="/images/products.png" alt="">
+        <h4 >Total Products</h4>
+        <h1  class="text-secondary">{{productCount}}</h1>
+    </div>
+    <div class="cards dashboard">
+      <img src="/images/oeders.png" alt="">
+        <h4>Total Orders</h4>
+        <h1  class="text-secondary">{{orderCount}}</h1>
+    </div>
+    </div>
+<div class="tables row mt-5">
+<div class="userTable col-md-4">
+  <h4 class="text-center" style="color:#01e397">Recent Users</h4>
+   <table class="table">
+  <thead class="thead-dark bg-primary text-white">
+   <tr class="text-center">
+      <th scope="col">User</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each userData}}
+   <tr class="text-center">
+      <td>{{this.name}}</td>
+      <td>{{this.email}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+</div>
+<div class="userTable col-md-4">
+    <h4 class="text-center" style="color:#01e397">Recent Products</h4>
+     <table class="table">
+  <thead class="thead-dark bg-primary text-white">
+    <tr class="text-center">
+      <th scope="col">Product</th>
+      <th scope="col">Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each products}}
+    <tr class="text-center">
+      <td>{{this.name}}</td>
+      <td>{{this.quantity}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+</div>
+<div class="userTable col-md-4">
+   <h4 class="text-center" style="color:#01e397">Recent Orders</h4>
+      <table class="table">
+  <thead class="thead-dark bg-primary
+   text-white">
+    <tr class="text-center">
+      <th scope="col">user</th>
+      <th scope="col">Total Price</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each orderData}}
+    <tr class="text-center">
+      <td>{{this.address.name}}</td>
+      <td>{{this.totalPrice}}</td>
+      <td>{{this.status}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+</div>
+</div>
+<div id="chart"></div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+<script>
+  console.log({{monthlyData}})
+  console.log({{monthlyReturn}})
+
+
+
+  var userCount={{userCount}}
+
+
+        var options = {
+          series: [{
+          name: 'Revenue',
+          data: [{{monthlyData}}]
+        }, {
+          name: 'Return',
+          data: [{{monthlyReturn}}]
+        },],
+          chart: {
+          type: 'bar',
+          height: 350
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: '55%',
+            endingShape: 'rounded'
+          },
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          show: true,
+          width: 2,
+          colors: ['transparent']
+        },
+        xaxis: {
+          categories: ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct' ,'Nov','Dec'],
+        },
+        yaxis: {
+          title: {
+            text: 'In Rupees.'
+          }
+        },
+        fill: {
+          opacity: 1
+        },
+        tooltip: {
+          y: {
+            formatter: function (val) {
+              return "Rs " + val + " thousands"
+            }
+          }
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+
+	</script>

@@ -2,32 +2,51 @@ const mongoose = require("mongoose")
 
 const orderSchema= new mongoose.Schema({
    orderItems:{
-    type:String
+   type:Object
    },
    address:{
-    type:String
-   },
-   city:{
-    type:String
-   },
-   phone:{
-    type:String
+    type:Object
    },
    status:{
     type:String,
     default:"pending"
    },
-   totalPrice:{
+   totalPrice:{   
     type:Number
-   },
-   user:{
-    type:String
    },
    dateOrdered:{
     type:Date,
-    default:Date.now
+    default:Date()
+   },
+   dateDelivered:{
+      type:Date, 
+      default: new Date(new Date().setDate(new Date().getDate() + 7))
+   },
+   userId:{
+      type:String
+   },
+   quantity:{
+      type:Number
+   },
+   paymentType:{
+      type:String 
+   },
+   discount:{
+      type:Number,
+      default:0
+   },
+   return:{
+      type:Boolean,
+      default:false
+   },
+   cancel:{
+      type:Boolean,
+      default:false
+   },
+   returnStatus:{
+      type:Boolean,
+      default:false,
    }
-
 });
 
 const  OrderModel = mongoose.model('orders', orderSchema);

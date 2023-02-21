@@ -27,26 +27,24 @@
 <div class="d-flex container-fluid row mt-5">
  
   <div class="proSide-bar d-flex flex-column col-md-2 col-sm-2">
-    <form action="/sort" method="get" class="ms-5 d-flex flex-column sort-form">
+    <form action="/sort" method="get" class="ms-5 d-flex flex-column sort-form" >
    <h6>Sort Items</h6>
-    <select name="sort" id="">
+    <select name="sort" id="" onchange= "this.form.submit()">
       <option value="Default"> Default</option>
       <option value="h to l"> price:High to Low</option>
       <option value="l to h"> price:Low to High</option>
     </select>
-    <button type="submit">ok</button>
   </form>
-  <form action="/filter" method="get" class="ms-5 d-flex flex-column sort-form mt-3">
+  <form action="/filter" method="get"  class="ms-5 d-flex flex-column sort-form mt-3">
    <h6>Filter Items</h6>
    <p>By Category</p>
-    <select name="filter" id="">
+    <select name="filter" id="" onchange= "this.form.submit()">
       
       <option value="Defualt"> Default</option>
       {{#each categories}}
       <option value="{{this.category}}">{{this.category}}</option>
   {{/each}}
     </select>
-    <button type="submit">ok</button>
   </form>
 </div>
   <div class=" container  row d-flex align-items-center justify-content-center col-md-10 col-sm-12">
@@ -56,7 +54,7 @@
       <a href="/singleProduct/{{this._id}}"> 
       <div class="img-sec">
          </div>
-        <img src="/images/{{this.product}}" alt="" srcset="">
+        <img src="/images/{{this.product.filename}}" alt="" srcset="">
         <div class="pro-head"><h4>{{this.name}}</h4></div>
         <div class="pro-category w-100" > <p>{{this.category}}</p></div>
         <div class="pro-price"><h6> Rs {{this.price}}</h6></div>
@@ -72,4 +70,5 @@
  <div class="paginate">
   <a href="/viewAllProducts/?page=1">1</a>
   <a href="/viewAllProducts/?page=2">2</a>
+  <a href="/viewAllProducts/?page=3">3</a>
  </div>

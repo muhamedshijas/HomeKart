@@ -3,7 +3,7 @@ const mongoosePaginate=require('mongoose-paginate-v2')
 
 const ProductSchema = new mongoose.Schema({
    name:String,
-   product:String,
+   product:Object,
    productSub:Array,
    category:String,
    price:Number,
@@ -19,3 +19,4 @@ const  ProductModel = mongoose.model('product', ProductSchema);
 module.exports=ProductModel;
 
 
+ 

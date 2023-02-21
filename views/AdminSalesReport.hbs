@@ -1,0 +1,116 @@
+  <div class="navbar row text-white">
+  <div class="col-md-8">
+    <div class="row   ms-4">
+      <div class="col-md-6 logo">HomeKart</div>
+      <div class="col-md-6 adminpanel mt-1">AdminPanel</div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="row logo">
+      <div class="col-md-6 adminlogo"><i class="ri-user-line"></i></div>
+      <div class="col-md-6 logout"><a href="/admin/logout"><i class="ri-logout-box-r-line"></i></a></div>
+    </div>
+  </div>
+</div>
+
+<div class="admin-section">
+    <div class="sidebar p-4 ps-0 text-center">
+   <a href="/admin/" style="color:black">Dashboard</a>
+   <a href="/admin/category">Categories</a>
+    <a href="/admin/product" style="color:black">Products</a>
+    <a href="/admin/user" style="color:black">Users</a>
+    <a href="/admin/banner" style="color:black">Banners</a>
+    <a href="/admin/orders" style="color:black">Orders</a>
+    <a href="/admin/coupons" style="color:black">Coupons</a>
+    <a href="/admin/banned" style="color:black">Banned Users</a>
+    <a href="/admin/salesReport" style="color:#51624F">Sales Report</a>
+       
+</div>
+<div class=" salesReport container mt-5 w-75">
+  <h2 class="text-center">Sales Reports</h2>
+<div class="salesreports mt-5">
+<form action="/admin/salesRepot" method="post" class="d-flex w-50 align-item-center ms-5 justify-content-around">
+<div class="start">
+  <label for="">Starting date</label>
+<input type="date" name="start">
+</div>
+<div class="end">
+  <label for="">Ending date</label>
+<input type="date" name="end">
+</div>
+<button type="submit">submit</button>
+</form>
+<div class="sales mt-5">
+<div class="reportData container">
+  {{#if averageRevenue}}
+<h5>Total Orders:{{orderCounts}}</h5>
+<h5>Total Revenue:{{totalAmount}}</h5>
+<h5>Average Revenue:{{averageRevenue}}</h5>
+<h5>Total Discount:{{totalDiscount}}</h5>
+
+{{else}}
+<h4 class="text-danger">No data available</h4>
+{{/if}}
+</div>
+<table class=" table table-dark mt-4">
+    <thead>
+      <tr class="text-center">
+        <th scope="col">User</th>
+        <th scope="col">Product</th>
+        <th scope="col">Total Price</th>
+        <th scope="col">Order Status</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      <tr>
+        {{#each orders}}
+        <td>{{this.address.name}}</td>
+        <td>{{this.orderItems.name}}</td>
+        <td>{{this.totalPrice}}</td>
+        <td>{{this.status}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+<button class="btn btn-success " onclick="downloadPdf()">Download in pdf</button>
+</div>
+
+
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+<script>
+    let orders=[]
+    {{#each orders}}
+    orders.push(['{{this.address.name}}','{{this.orderItems.name}}','{{this.orderItems.price}}','{{this.quantity}}','{{this.discount}}','{{this.totalPrice}}'
+    ,'{{this.status}}'])
+
+    {{/each}}
+    let totalRevenue= '{{totalAmount}}'
+    let totalOrders= '{{orderCounts}}'
+    let averageRevenue= '{{averageRevenue}}'
+    let totalDiscount= '{{totalDiscount}}'
+ const { jsPDF } = window.jspdf;
+function downloadPdf() {
+      const doc= new jsPDF();
+      doc.text(15, 20, "Homekart Sales Report ");
+      doc.autoTable({
+        head: [['Type', 'Details']],
+        body: [
+              ['Total Orders', totalOrders],
+              ['Total Revenue', totalRevenue],
+              ['Average Revenue', averageRevenue],
+              ['Total Discount', totalDiscount],
+              ],
+        startY: 40
+      })
+      doc.text(15, doc.lastAutoTable.finalY+20, "order info");
+      doc.autoTable({
+        head: [['UserName','Product', 'Orginal Price','Quantity','Discount','Total Price', "status"]],
+        body: orders,
+        startY: doc.lastAutoTable.finalY + 30
+      })
+      doc.save('sales-report.pdf');
+    }
+</script>

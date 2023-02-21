@@ -54,7 +54,13 @@
         <td>{{this.email}}</td>
         <td>{{this.PhoneNo}}</td>
         <td>
-          <a href="/admin/banuser/{{this._id}}" class="btn btn-warning"> Ban User</a>
+          {{#if this.staff}}
+          <a href="/admin/unBan/{{this._id}}" class="btn btn-danger"> Remove From staff</a>
+          {{else if this.admin}}
+          <h6 class="text-success">Admin</h6>
+          {{else}}
+          <a href="/admin/banuser/{{this._id}}" class="btn btn-warning"> Add To staff</a>
+          {{/if}}
         </td>
       </tr>
       {{/each}}
@@ -62,3 +68,4 @@
   </table>
   </div>
   </div>
+ 

@@ -81,7 +81,8 @@ body{
 }
 .sidebar{
   background-color:#D9D9D9;
-  height: 100% !important;
+  height: 100vh !important;
+
   width: 220px;
   color: black;
   font-weight:bold;
@@ -168,6 +169,7 @@ td img{
   width: 70px;
 }
 .product-add{
+  width:700px !important;
   gap: 10px !important;
   border: 2px solid #51624F;
   margin-top: 20px;
@@ -300,16 +302,17 @@ td img{
 }
 .categoryProCards{
   height: 200px;
-  width: 100%;
-  /* background-color: #f9e78c; */
   padding: 20px;
-  margin-top: 20px !important;
-  margin-left: 80px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center ;
+  margin-top: 20px ;
+  margin-left: 10px !important ;
 }
-.categoryProCards img{
-  height: 150px;
-  width:200px
-}
+ .categoryProCards img{
+   height: 150px;
+  width:200px; 
+} 
 .wish .heart{
   font-size: 30px;
   color: #51624F;
@@ -348,6 +351,11 @@ footer a{
 }
 
 .navbar a{
+  text-decoration: none;
+  color: white;
+}
+
+.navbar a:hover{
   text-decoration: none;
   color: white;
 }
@@ -415,16 +423,21 @@ footer a{
     align-items: center;
     justify-content: space-around;
     margin-top: 20px;
+  
   }
-
+.orderCards img{
+  height: 80px;
+  width: 80px;
+}
   .orderCards .cards{
-    height: 150px;
+    height: 200px;
     width:150px;
     box-shadow: 2px 2px 5px #2c2c2c;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border-radius: 15px;
   }
 
   .singleProductSection{
@@ -519,7 +532,7 @@ table .total{
   background-color: #51624F;
   height: 300px;
   width: 220px;
-  margin-left: 10px;
+  margin-left: 100px;
   border-radius: 9px;
   padding: 20px;
   box-shadow: 4px 6px 2px rgba(0, 0, 0, 0.281);
@@ -583,25 +596,6 @@ table .total{
   /* height: 300px; */
 }
 
-.paymentType{
-  display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
-
-}
-
-.paymentCard{
-  border:1px solid white;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  height: 40px;
-  width: 200px !important;
-  border-radius: 5px;
-}
-.paymentTable{
-  border-bottom: 1px solid white;
-}
 
 .couponAdd{
   padding-top: 10px;
@@ -652,6 +646,7 @@ font-weight: 500;
 }
 
 
+
 .addressCard{
 box-shadow: 4px 4px 6px 2px black;
  height: 160px;
@@ -680,8 +675,159 @@ margin-top: 10px !important;
   font-weight: 500;
 
 }
+.addressList a{ 
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.subImages{
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+ 
+  justify-content: space-around;
+}
+
+.subImages img{
+  border: 1px solid black;
+  width: 150px;
+  height: 130px;
+}
+
+.cart a{
+  text-decoration: none;
+  color:white;
+}
+.addquantitybtn{
+  background-color: #000000;
+  width: 20px !important;
+  height: 20px !important;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 3px;
+
+}
+.qauntitySection{
+  display: flex;
+  gap: 5px;
+  width: 25%;
+  align-items: center;
+}
 
 
+.payment{
+  display: flex !important;
+  flex-direction: column !important;
+
+  justify-content: space-around;
+}
+
+.paymentType{
+  display: flex;
+  width:400px;
+  gap: 15px;
+  border: 2px solid black;
+  padding: 8px;
+}
+
+.cod{
+  display: flex;
+  gap: 8px;
+}
+
+.coupons{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  border: 2px dotted #f9e78c;
+  color: #f9e78c;
+  width: 300px;
+padding: 20px;
+}
+
+.couponSection{
+  background: url("/images/1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+.coupons button{
+  width: 120px;
+  height:40px;
+  background-color: #f9e78c;
+  border-radius: 9px;
+}
+
+.dashboard{
+  width: 200px !important;
+  width: 200px !important;
+}
+
+.admin-section{
+  display: flex !important;
+}
+#chart{
+  margin-top: 10px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  /* width: 1000px !important; */
+}
+
+.reportData{
+  display: flex;
+  justify-content: space-around;
+
+}
+.myWallet{
+  box-shadow: 4px 4px 6px 2px black;
+  height: 200px;
+  width: 180px !important;
+ margin-top: 10px !important;
+ padding: 10px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: space-around;
+}
+.myWallet img{
+  height: 60px;
+  width: 60px;
+}
+.myWalletCheck img{
+  height: 60px;
+  width: 60px;
+}
+
+.myWalletCheck {
+  box-shadow: 4px 4px 6px 2px black;
+  height: 200px;
+  width: 300px !important;
+ margin-top: 10px !important;
+ padding: 10px;
+ display: flex;
+align-items: center;
+justify-content: space-around;
+
+}
+.dashbordAdmin{
+display: flex;
+flex-direction: column;
+}
+
+.orderFilter{
+  width:200px;
+  height:50px;
+  border-radius:10px;
+  outline: none;
+  background: none;
+  font-size: 16px;
+}
 @media (max-widht:500px) {
   .tableCart{
     width:100px;
@@ -689,14 +835,96 @@ margin-top: 10px !important;
   }
 }
 
+@media (max-width:500px){
+  .pro-img-qua{
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px;
+  }
+}
+
+/* @media (max-width:500px){
+ body{
+  max-width: 500px;
+ overflow-x: hidden;
+  }
+} */
+
+
 @media (max-width:500px) {
   .categoryProCards{
     height: 320px;
     margin-left:10px!important;
+    margin-top: 10px !important;
   }
 }
 
+@media (max-width:500px) {
+  .categoryProCards .cBtn{
+    width: 100% !important;
+  }
+}
+@media (max-width:500px) {
+  .singleImage img{
+    height: 150px;
+    width: 200px;
 
+
+  }
+}
+@media (max-width:500px) {
+  .singleImage {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+
+
+  }
+}
+@media (max-width:500px) {
+  .subImages img{
+    height: 60px;
+    width: 60px;
+    margin-left: 20px !important;
+
+  }
+}
+@media (max-width:500px) {
+  .subImages {
+   display: flex;
+   justify-content: space-around !important;
+
+  }
+}
+@media (max-width:500px) {
+  .productDetials {
+   display: flex;
+   justify-content: space-around !important;
+   align-items: center;
+
+  }
+}
+
+@media (max-width:500px) {
+  .categoryProCards img{
+    height: 100px;
+    width: 150px;
+    margin-left:10px!important;
+
+  }
+}
+
+@media (max-width:500px){
+  .addressCard{
+    box-shadow: 4px 4px 6px 2px black;
+     height: 160px;
+     width: 300px !important;
+    margin-top: 10px !important;
+    
+     margin-bottom: 20px;
+    }
+}
 
 
 
@@ -705,15 +933,36 @@ margin-top: 10px !important;
   margin-top:5px !important;
   }
 }
-
-@media (max-width:500px){
+@media (max-width:500px) {
+  .banners img{
+    width: 100%;
+    height:150px !important;
+  }
+  
+}
+@media (max-width:500px) {
+  .banners {
+    width: 100%;
+    height:150px !important;
+  }
+  
+}
+/* @media (max-width:500px){
   .navbar{
 
     width: 400px;
   }
-} 
+}  */
 
-
+@media (max-width:500px){
+  .paymentType{
+    display: flex;
+    width:300px;
+    gap: 5px;
+    border: 2px solid black;
+    padding: 2px;
+  }
+}
 
 @media (max-width:500px){
   .logo{
@@ -721,10 +970,53 @@ margin-top: 10px !important;
     font-size: 15px !important;
   }
 } 
+@media (max-width:500px){
+  .product-add{
+    border: 2px solid #51624F;
+    width: 350px !important;
+    gap: 10px !important;
+  border: 2px solid #51624F;
+  margin: 0px !important;
+  margin-top: 20px;
 
-/* @media (max-width:500px){
- 
-.adminpanel{
-  font-size: 15px;
+  /* padding: 10px; */
+  }
+} 
+@media (max-width:500px){
+.namefield{
+  width: 320px;
+  margin-top: 10px;
 }
-}  */
+}
+
+@media  (max-width:500px){
+  .category-card .card{
+    font-size: 5px;
+    height: 50px;
+    width: 50px;
+    margin-left: 0px!important
+  }
+}
+@media  (max-width:500px){
+  .userProfile{
+ 
+    padding-left: 30px !important;
+    background-color:#AFBEA2;
+    width: 300px !important;
+  }
+}
+@media  (max-width:500px){
+  .profile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media  (max-width:500px){
+  .profile .addressCard  ,.profile .myWallet, .profile .adressAdd{
+    margin-left: 50px !important;
+  }
+}
+
+

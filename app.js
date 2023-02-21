@@ -1,4 +1,3 @@
-require('dotenv').config()
 const express=require('express')
 const session = require("express-session");
 const {engine} = require("express-handlebars")
@@ -6,9 +5,7 @@ const path = require("path")
 const UserRouter=require('./routers/UserRouter')
 const AdminRouter=require('./routers/AdminRouter')
 const dbConnect =require("./dbConnect")
-require('dotenv').config()
-
-
+require("dotenv").config()
 dbConnect();
 const app=express()
 app.use(session({ secret: "key", resave: false, saveUninitialized: true }));
@@ -22,10 +19,10 @@ next();
 app.engine("hbs", engine({extname:".hbs"}))
 app.set('view engine', 'hbs');
 app.use('/admin',AdminRouter)
-app.use('/',UserRouter)
+app.use('/',UserRouter) 
 
-
-app.listen(2555,()=>{ 
+       
+app.listen(2255,()=>{ 
     console.log("started on 2555")
 })
       

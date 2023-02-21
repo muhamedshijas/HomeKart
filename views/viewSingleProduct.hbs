@@ -21,15 +21,20 @@
     
         <div class="row">
           
-            <div class="col-md-6 singleImage">
-                <img src="/images/{{product.product}}" class="img-fluid" alt="">
+            <div class="col-md-6 singleImage"> 
+                <img src="/images/{{product.product.filename}}" class="img-fluid" alt="" id="mainImg">
+                <div class="subImages">
+                  {{#each product.productSub}}
+                  <img src="/images/{{this.filename}}" alt="" srcset="" id="subImg">
+                  {{/each}}
+                </div>
             </div>
             <div class="col-md-6  productDetials">
               <div class="wishSection d-flex w-100 justify-content-between">
-                <h2>{{product.name}}</h2>
+                <h2 class="text-center">{{product.name}}</h2>
                 <div class="wish heart"> <a href="/addtoWishList/{{product._id}}"><i class="ri-heart-3-line"></i></a></div>
                 </div>
-                
+                       <div class="pro-quantity"><b class="text-danger"> Only {{product.quantity}} stocks Left</b></div>    
                 <h5>{{product.category}}</h5>
                 <p>{{product.description}}</p>
                 <h3>RS {{product.price}}.00</h3>
@@ -46,25 +51,16 @@
 {{#each recomendedProducts}}
     <div class="col-md-2 pro-cards">
       <div class="img-sec">
+        <img src="/images/{{this.product.filename}}" alt="" srcset="">
          </div>
-        <img src="/images/{{this.product}}" alt="" srcset="">
+        
         <div class="pro-head"><h4>{{this.name}}</h4></div>
         <div class="pro-category w-100" > <p>{{this.category}}</p></div>
-        <div class="pro-price"><h6> Rs {{this.price}}</h6></div>
+         <div class="pro-price"><h6> Rs {{this.price}}</h6></div>
         <button class="btn btn-outline-success btn-lg btn-block pro-btn">Add to Cart</button>
     </div>
     {{/each}}
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
 
 

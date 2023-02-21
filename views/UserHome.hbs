@@ -13,34 +13,35 @@
       <div class="col-md-3 adminlogo"> <a href="/cart"><i class="ri-shopping-cart-2-line"></a></i></div>
       <div class="col-md-3 adminlogo"> <a href="/userProfile"><i class="ri-user-line"></i></a></div>
       <div class="col-md-3 logout"><a href="/logout"><i class="ri-logout-box-r-line"></i></a></div>
+   
     </div>
   </div>
 </div>
 <div class="container">
-  <div class="row">
 
-<ul class="category-card col-md-12">
 
-  <li>
+<ul class=" category-card container row">
+
+  <li class="col-2 col-md-1">
    <a href="/category-furniture/?category=furnitures"> <div class="card furniture">Furnitures</div></a>
   </li>
-  <li>
-   <a href="/category-furniture/?category=Kitchen Utilities"> <div class="card kitchen">Kitchen Utilities</div></a>
+  <li class="col-2 col-md-1">
+   <a href="/category-furniture/?category=KitchenUtilities"> <div class="card kitchen">Kitchen Utilities</div></a>
   </li>
-  <li>
-   <a href="/category-furniture/?category=Home Appliances">  <div class="card home">Home Appliances</div></a>
+   <li class="col-2 col-md-1">
+   <a href="/category-furniture/?category=HomeApliances">  <div class="card home">Home Appliances</div></a>
   </li>
-  <li>
-    <a href="/category-furniture/?category=Eletronic Items">  <div class="card eletrical">Eletric items</div></a>
+   <li class="col-2 col-md-1">
+    <a href="/category-furniture/?category=EletronicItems">  <div class="card eletrical">Eletric items</div></a>
   </li>
-  <li>
-    <a href="/category-furniture/?category=Home Decors">  <div class="card decors">Home Decors</div></a>
+  <li class="col-2 col-md-1">
+    <a href="/category-furniture/?category=HomeDecors">  <div class="card decors">Home Decors</div></a>
   </li>
-  <li>
-     <a href="/category-furniture/?category=Indoor Plants">  <div class="card plants">Indoor Plants</div></a>
+   <li class="col-2 col-md-1">
+     <a href="/category-furniture/?category=IndoorPlants">  <div class="card plants">Indoor Plants</div></a>
   </li>
 </ul>
-  </div>
+
 <div id="carouselExampleFade" class="carousel slide carousel-fade banners" data-bs-ride="carousel">
   <div class="carousel-inner">
     {{#each banners}}
@@ -64,15 +65,19 @@
  
   <div class=" container row d-flex align-items-center justify-content-center">
 {{#each products}}
+
     <div class="col-md-2 pro-cards">
+      <a href="/singleProduct/{{this._id}}">
       <div class="img-sec">
          </div>
-        <img src="/images/{{this.product}}" alt="" srcset="">
+        <img src="/images/{{this.product.filename}}" alt="" srcset="">
         <div class="pro-head"><h4>{{this.name}}</h4></div>
         <div class="pro-category w-100" > <p>{{this.category}}</p></div>
         <div class="pro-price"><h6> Rs {{this.price}}</h6></div>
         <button class="btn btn-outline-success btn-lg btn-block pro-btn">Add to Cart</button>
+        </a>
     </div>
+    
     {{/each}}
   </div>
 </div>

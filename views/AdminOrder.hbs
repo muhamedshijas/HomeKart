@@ -27,20 +27,29 @@
 <div class="container">
     <div class="orderCards">
     <div class="cards">
+      <img src="/images/oeders.png" alt="">
         <h4>Total Orders</h4>
         <h1>{{totalcount}}</h1>
     </div>
     <div class="cards">
+      <img src="/images/pending.png" alt="">
         <h4>Pending</h4>
         <h1>{{pendingCount}}</h1>
         </div>
     <div class="cards">
+      <img src="/images/delivered.png" alt="">
         <h4>Completed</h4>
         <h1>{{deliveredCount}}</h1>
     </div>
     <div class="cards">
+      <img src="/images/cancelled.png" alt="">
         <h4>Cancelled</h4>
         <h1>{{cancelCount}}</h1>
+    </div>
+    <div class="cards">
+      <img src="/images/return.png" alt="">
+        <h4>Returned</h4>
+        <h1>{{returnCount}}</h1>
     </div>
     </div>
     <div class="row container product-btn mt-5">
@@ -50,6 +59,17 @@
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="name">
       <button class="btn btn-success" type="submit">Search</button>
     </form>
+    <form action="/admin/filterOrder" method="get">
+    <select name="filter" id="" onchange= "this.form.submit()" class="orderFilter">
+      <option value="default">Filter Order</option>
+      <option value="All">All</option>
+      <option value="Returned">Returned</option>
+      <option value="Cancelled">Cancelled</option>
+      <option value="Delivered">Delivered</option>
+      <option value="Return Processsing">Return Processing</option>
+      <option value="pending">Pending</option>
+    </select>
+    </form>
         </div>
     </div>
 
@@ -57,11 +77,13 @@
   <thead class="bg-dark text-white">
     <tr>
       <th scope="col">Product</th>
-      <th scope="col">user</th>
-      <th scope="col">City</th>
-       <th scope="col">Phone</th>
+      <th scope="col">Quantity</th>
         <th scope="col">Total Price</th>
       <th scope="col">Status</th>
+      <th scope="col">Date</th>
+      <th scope="col">Delivery date</th>
+      <th scope="col">User Name</th>
+      <th scope="col">Payment Status</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -69,17 +91,21 @@
      {{#each orders}}
 
     <tr>
-      <td>{{this.orderItems}}</td>
-      <td>{{this.user}}</td>
-      <td>{{this.city}}</td>
-      <td>{{this.phone}}</td>
+      <td>{{this.orderItems.name}}</td>
+      <td>{{this.quantity}}</td>
       <td>{{this.totalPrice}}</td>
       <td>{{this.status}}</td>
+      <td>{{this.dateOrdered}}</td>
+      <td>{{this.dateDelivered}}</td>
+      <td>{{this.address.name}}</td>
+      <td>{{this.paymentType}}</td>
       <td><a href="/admin/changeStatus/{{this._id}}" class="btn btn-dark">Change Status</a> </td>    
       </tr>
 {{/each}}
   </tbody>
 </table>
  </div>
-  
 
+
+
+  

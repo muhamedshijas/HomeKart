@@ -5,13 +5,23 @@ const userSchema = new mongoose.Schema({
     email:String,
     password:String,
     PhoneNo:Number,
-    ban:{
+    staff:{
         type:Boolean,
         default:false,
     },
+
     wishlist:Array,
     cart:Array,
     address:Array,
+    
+    wallet:{
+        type:Number,
+        default:0
+    },
+    admin:{
+        type:Boolean,
+        default:false
+    }
 });
 
 const UserModel = mongoose.model('users', userSchema);

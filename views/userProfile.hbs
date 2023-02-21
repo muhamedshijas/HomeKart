@@ -16,7 +16,7 @@
     </div>
   </div>
 </div>
-<div class="row">
+<div class="row profile">
     <div class="sidebar userProfile  col-md-2 p-4 ps-0 text-center">
     <div class="profileSection ms-3">
         <img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" alt="">
@@ -29,12 +29,14 @@
     <div class="profileAction  ms-3"><a href="/wishlist">Wishlist</a></div>
     <div class="profileAction  ms-3"><a href="/cart">Carts</a></div>
     <div class="profileAction  ms-3"><a href="/orders">Orders</a></div>
+   
 </div>
 
-<div class="addressSection col-md-8 container-fluid">
+<div class="addressSection col-md-4 container-fluid">
 <div class="row">
 {{#each address}}
 <div class="addressCard col-md-6">
+  <div class="address">
   <ul class="addressList">
     <li class="userName">{{this.name}}</li>
     <li>{{this.Address}}</li>
@@ -47,6 +49,16 @@
 </div>
 {{/each}}
 </div>
-  <a href="/addAddress">Add address</a>
+  <a href= "/addAddress" class="adressAdd">Add address</a>
+</div>
+</div>
+<div class="col-md-4">
+
+   <div class="myWallet ms-3">
+    <img src="/images/wallet.png" alt="">
+    <p>  My Wallet </p>
+     <p> Balance</p>
+      <b>Rs {{user.wallet}}</b>
+    </div>
 </div>
 </div>

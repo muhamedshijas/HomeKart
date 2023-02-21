@@ -12,7 +12,7 @@
     </div>
   </div>
 </div>
-<form action="/admin/productAdd" method="post" enctype="multipart/form-data" class=" product-add container d-flex flex-column w-50"  >
+<form action="/admin/productAdd" method="post" enctype="multipart/form-data" class=" product-add container d-flex flex-column"  >
     <H3 class="text-center ">Add Products</H3>
     <label for="">Product  name</label>
     <input type="text" name="name" class="namefield">      
@@ -30,14 +30,15 @@
        <div class="qua"> <label for="">Price</label>
     <input type="number" name="price" class="namefield">
     </div>
+    </div>
   </div>
     </div>
     <label for="" class="ms-4">Choose Image:</label>
-  <input type="file" name="image" class="namefield ms-4"/ accept="image/png, image/jpeg, image/jpg, image/webp">
+  <input type="file" name="product" class="namefield ms-4"/ accept="image/png, image/jpeg, image/jpg, image/webp">
 <p class="text-danger">{{err}}</p>
 
   <label for="" class="ms-4">Choose Another  Image:</label>
-  <input type="file" name="subImages" multiple class="namefield ms-4"/>
+  <input type="file" name="subImages" multiple class="namefield ms-4"  accept="image/png, image/jpeg, image/jpg, image/webp"/>
   <label for="">Description</label>
     <input type="text" name="description" class="namefield"> 
   <button type="submit" class="btn btn-success">Adddd</button>

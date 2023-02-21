@@ -19,21 +19,25 @@
 
 <div class="p-5 row container-fluid">
   <div class="col-md-6 col-sm-12  mt-1">
-   {{#each products}}
+    <h4 class="text-center text-danger">{{noItem}}</h4>
+       {{#each products}}
     <div class=" mt-5 container-fluid row ms-2">
       <div class="col-md-4 cartCard">
-        <img src="/images/{{this.product}}" class="img-fluid" alt="" srcset="">
+        <img src="/images/{{this.product.filename}}" class="img-fluid" alt="" srcset="">
       </div>
       <div class="col-md-8 cart">
         <h3>{{this.name}}</h3>
         <h5 style="color: rgba(0, 0, 0, 0.526);">{{this.category}}</h5>
-        Quantity: <button class="me-2" onclick="sub()">-</button> <b id="quantity">2</b><button class="ms-2" onclick="add()">+</button>
+        <div class="qauntitySection">
+         Quantity: <a href="/addquantity/{{this._id}}"><div class="addquantitybtn">+</div></a><b>{{this.cartQuantity}}</b><a href="/minusquantity/{{this._id}}"><div class="addquantitybtn">-</div></a>
+        </div>
         <h4>{{this.price}}</h4>
+        <a href="/removeFromCart/{{this._id}}" class="btn btn-warning ">Remove From cart </a>
       </div>
     </div>
     {{/each}}
-  </div>
 
+</div>
   <div class="col-md-6 col-sm-4 mt-1 container-fluid"> 
     <h3 class="text-center">Order Summary</h3>
   <table class="table tableCart mt-5">
@@ -51,21 +55,22 @@
     <tr>
     
       <td>{{this.name}}</td>
-      <td>1</td>
+      <td></td>
       <td>{{this.price}}</td>
     </tr>
     {{/each}}
+
     <tr class="total">
       <td>
 
       </td>
-      <td>4</td>
+      <td></td>
       <td>{{totalPrice}}</td>
     </tr>
   </tbody>
   <tr>
     <td>Discount</td>
-    <td></td>
+    <td></td> 
     <td>0.00</td>
   </tr>
    <td>Delivery Charge</td>
@@ -75,7 +80,7 @@
     </tr>
    <td> <h4>Total Amount</h4> </td>
     <td></td>
-    <td> <h4> {{totalPrice}}</h4></td>
+    <td> <h4> {{totalAmount}}</h4></td>
   </tr>
 </table>
 <div class="orderBtns d-flex  row justify-content-between ms-5">
@@ -85,17 +90,7 @@
 </div>
 
 </div>
+
+
 </div>
 
-<script>
-  var a=(parseInt(document.getElementById('quantity').innerText))
-  function add(){
-    console.log(a)
-  a++
- document.getElementById('quantity').innerText=a
-  }
-  function sub(){
-    a--
-    document.getElementById('quantity').innerText=a
-  }
-</script>

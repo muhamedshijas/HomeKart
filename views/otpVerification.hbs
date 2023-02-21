@@ -19,7 +19,9 @@
         </b>
         {{/if}}
         </div>
-          <a href="/reset/{{email}}/{{password}}/{{PhoneNo}}/{{name}}" class="mt-2" style="text-decoration: none;">Resend OTP</a>
+        <div id="countdown" class="text-primary">
+
+        </div>
     </form>
  
     </ul>
@@ -27,3 +29,18 @@
 
 </div>
 </div>
+<script>
+    var countdown=document.getElementById('countdown')
+    function checkCountOver(count){
+        if(count<=0){
+            clearInterval(interval)
+            countdown.innerHTML=`<a href="/reset/{{email}}/{{password}}/{{PhoneNo}}/{{name}}" class="mt-2" style="text-decoration: none;">Resend OTP</a>`
+        }
+    }
+    let count=31
+   let interval= window.setInterval(()=>{
+        count--;
+        countdown.innerHTML="OTP resend in 00:"+count;
+        checkCountOver(count)
+    },1000)
+</script>

@@ -17,21 +17,23 @@
   </div>
 </div>
 
+<form action="/checkOut" method="post">
 <div class="checkoutSection row container-fluid">
-    <div class="col-md-6  ms-3 mt-5 container-fluid">
+    <div class="col-md-5  ms-3 mt-5 container-fluid ">
         <table class="table tableCart">
   <tbody>
     {{#each products}}
     <tr>
 
-      <td><img src="/images/{{this.product}}" alt="">  {{this.name}}</td>
-      <td></td>
+      <td><img src="/images/{{this.product.filename}}" alt=""></td>
+      <td>{{this.name}}</td>
       <td>Rs {{this.price}}</td>
       <td><a href="/removeFromCart/{{this._id}}" style="text-decoration: none; color:black"> <i class="ri-close-circle-fill"></i></a> </td>
     </tr>
     {{/each}}
 
     <tr>
+      <b class="text-danger">{{err}}</b>
         <td></td>
         <td><h6>Amount</h6></td>
         <td><h6>Rs {{totalPrice}}</h6></td>
@@ -41,60 +43,106 @@
         <td>Discount<h6></h6></td>
         <td><h6>Rs 0.00</h6></td>
     </tr>
+    <tr>
+        <td></td>
+        <td>Delivery Charge<h6></h6></td>
+        <td><h6>Rs 40</h6></td>
+    </tr>
      <tr>
         <td></td>
         <td><h5>Total</h5></td>
-        <td><h5>Rs {{totalPrice}}</h5></td>
+        <td><h5>Rs {{amount}}</h5></td>
     </tr>
   </tbody>
 </table>
-    </div>
 
-    <div class="col-md-5 mt-5 container ms-3 my-2 checkoutCard">
-        <h3 class="text-white text-center mt-3">Order Summary</h3>
-          <form action="/checkCoupon" method="post" class="d-flex flex-column align-items-center couponAdd">
-            <h3 class="text-white">Add Coupons</h3>
-            <label for="" class="text-white">Coupon code</label>
-            <input type="text" name="coupon"  class="w-50 mt-2">
-            <button type="submit">Submit</button>
-        </form>
-         <table class="table tableCart paymentTable  text-white">
-            <tr>
+<b class="text-danger">{{noAddress}}</b>
+<div class="addressSection col-md-8">
+
+ {{#each address}}
+<label for="{{this.id}}" class="addressCard p-2 d-flex justify-content-between">
+  <div class="address">
+  <ul class="addressList">
+        <li class="userName">{{this.name}}</li>
+    <li>{{this.Address}}</li>
+    <li>{{this.city}}</li>
+    <li>{{this.landMark}}</li>
+     <li>{{this.pincode}}</li>
+    <li>{{this.phone}}</li>
+    <li><a href="/removeAddress/{{this.id}}">Delete</a></li>
+  </ul>
+  </div>
+  <div class="selectaddress d-flex align-items-center pe-3">
+    <input type="radio" name="address" id="{{this.id}}" value="{{this.id}}">
+  </div>
+</label>
+{{/each}}
+ <a href="/addAddress">Add address</a>
+
+</div>
+</div>
+<div class="col-md-5 mt-3 payment">
+<h4>Paymnet Type</h4>
+<div class="paymentType">
+  <div class="cod">
+<input type="radio" name="Payment" required value="Not Paid">Cash On Delivery
+</div>
+  <div class="cod">
+<input type="radio" name="Payment" required value="Paid">Online Payment
+</div>
+</div>
+<div class="coupons">
+<a href="/addCoupon">Add coupon</a>
+<b class="text-danger">{{noCoupon}}</b>
+<b class="text-success">{{success}}</b>
+
+<input
+        type="text"
+        value="{{couponCode}}"
+        class="form-control"
+        name="couponCode"
+        style="height:0px;visibility:hidden;"
+      />
+</div>
+
+
+   <div class="myWalletCheck ms-3">
+    <img src="/images/wallet.png" alt="">
+    <div class="wallletItems">
+    <p>  My Wallet </p>
+     <p> Balance</p>
+      <b>Rs {{user.wallet}}</b>
+      </div>
+  <input type="radio" name="wallet" value="{{user.wallet}}">
+    </div>
+<div class="amountDetials mt-3">
+  <table class="table tableCart">
+    <tr>
         <td></td>
         <td><h6>Amount</h6></td>
-        <td><h6>Rs{{totalPrice}}</h6></td>
+        <td><h6>Rs {{amount}}</h6></td>
     </tr>
      <tr>
         <td></td>
         <td>Discount<h6></h6></td>
-       {{#if discount}}
+        {{#if discount}}
         <td><h6>Rs {{discount}}</h6></td>
         {{else}}
-          <td><h6>Rs 0.00</h6></td>
+        <td><h6>Rs 0.00</h6></td>
         {{/if}}
     </tr>
      <tr>
         <td></td>
-        <td><h5>Total</h5></td>
-        {{#if totalAmount}}
-        <td><h5>Rs {{totalAmount}}</h5></td>
-        {{else}}
-        <td><h5>Rs {{totalPrice}}</h5></td>
-        {{/if}}
+        <td><h3>Total</h3></td>
+        <td><h3>Rs {{totalAmount}}</h3></td>
     </tr>
-        </table>
-      
-        <form action="/pay" method="post">
-     <h5 class="text-white mt-5 ms-4">payment Methord</h5>
-        <div class="row paymentType ">
-            <div class="col-md-5 text-white paymentCard" >
-                <input type="radio" name="Online Pay" id="" value="NetBanking">Net Banking
-            </div>
-             <div class="col-md-5  text-white paymentCard">
-                <input type="radio" name="Online Pay" id="" value="NetBanking">Cash On delivery
-            </div>
-          <button class="btn btn-light w-50 mt-4" type="submit" >PAY NOW</button>
-        </div>
-        </form>
-    </div>
+  </tbody>
+</table>
+</div>
+<div class="checkOutButtons d-flex justify-content-around w-90 row">
+<button type="submit" class="btn btn-success  w-50">Proceed to pay</button>
+<a href="/canceOrder" class="btn btn-outline-success w-25">Cancel</a>
+</div>
+</div>
+</form>
 </div>

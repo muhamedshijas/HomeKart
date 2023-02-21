@@ -39,12 +39,10 @@
     name="category"
     id=""
     class="dropdown"
-    value={{productDetails.category}}
+    value=""
   >
   {{#each category}}
-    <option nvalue={{this.category}}>{{this.category}}
-    
-    </option> 
+    <option value={{this.category}}>{{this.category}}</option> 
     {{/each}}
   </select>
   <div class="pro-img-qua d-flex justify-content-around">
@@ -73,7 +71,7 @@
   <div class="img">
 
     <img
-      src="http://localhost:2555/images/{{productDetials.product}}"
+      src="http://localhost:2255/images/{{productDetials.product.filename}}"
       id="image"
       style="height: 100px;"
       alt=""
@@ -86,6 +84,8 @@
     id="editedImage"
     onchange="changeimage()"
   />
+  <label for="" class="ms-4">Choose Another  Image:</label>
+  <input type="file" name="subImages" multiple class="namefield ms-4"/>
   <label for="">Description</label>
   <input
     type="text"
@@ -102,7 +102,6 @@
   var binaryData = [];
   binaryData.push(file); 
   var imageData=window.URL.createObjectURL(new Blob(binaryData, {type:"application/zip"}))
-  console.log(imageData)
   document.getElementById('image').src=imageData;
    }
 </script>

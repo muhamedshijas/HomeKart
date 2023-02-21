@@ -2,15 +2,24 @@
     <form action="/admin/changeStatus" method="post" class="change">
     <h3 class="text-center">Update Status</h3>
         <label for="name">UserName</label>
-        <input type="text" name="name" id="" value="{{order.user}}">
+        <input type="text" name="name" id="" value="{{order.address.name}}" disabled>
          <label for="name">Product</label>
-        <input type="text" name="name" id="" value="{{order.orderItems}}">
+        <input type="text" name="name" id="" value="{{order.orderItems.name}}" disabled>
         Status
+
+        {{#if order.returnStatus}}
+        <select name="status" id="">
+            <option value="ReturnProduct">Return Product</option>
+            <option value="CannotReturn">Cannot Return</option>
+        </select>
+        {{else}}
         <select name="status" id="">
             <option value="pending">pending</option>
             <option value="Cancelled">Cancel</option>
             <option value="Delivered">Delivered</option>
         </select>
+
+        {{/if}}
        <input
         type="text"
         value={{order._id}}

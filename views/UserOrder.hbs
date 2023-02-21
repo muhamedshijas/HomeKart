@@ -1,1 +1,49 @@
-fedhtfgedrddhjgdfcdchngfdccgjnfghcbhnjfhgjmcfhjnmfhjnfhcbj
+<div class="navbar row text-white">
+  <div class="col-md-8">
+    <div class="row product-section  ms-4">
+      <div class="col-md-4 logo"><a href="/">HomeKart</a></div>
+      <div class="col-md-3 adminpanel  mt-2">
+ <a href="/viewAllProducts/?page=1"> All Products</a></div>
+      <div class="col-md-3 adminpanel mt-1">deals</div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="row logo">
+      <div class="col-md-3 adminlogo"> <a href="/wishlist"><i class="ri-heart-3-line"></i></a></div>
+      <div class="col-md-3 adminlogo"> <a href="/cart"><i class="ri-shopping-cart-2-line"></a></i></div>
+      <div class="col-md-3 adminlogo"> <a href="/userProfile"><i class="ri-user-line"></i></a></div>
+      <div class="col-md-3 logout"><a href="/logout"><i class="ri-logout-box-r-line"></i></a></div>   
+    </div>
+  </div>
+</div>
+<div class="category-head container d-flex align-items-center justify-content-center mt-5"><h3>My Orders</h3></div>
+<div class="containerfluid ps-5 pt-2 ">
+
+{{#each orders}}
+<div class="categoryProCards row container-fluid my-5">
+    <div class="col-md-2 col-sm-12 mt">
+       <img src="/images/{{this.orderItems.product.filename}}" alt="">
+    </div>
+    <div class="col-md-9 col-sm-12 d-flex flex-column">
+        <h3>{{this.orderItems.name}}</h3>
+        <div class="wish d-flex w-100 justify-content-between"><b>quantity:{{this.quantity}}</b> 
+        </div>
+        <h4> price: Rs {{this.totalPrice}}</h4>
+        <b class="text-dark">Order Status:{{this.status}}</b>
+        <b>Payment Status: {{this.paymentType}}</b>
+        
+{{#if returnStatus}}
+
+{{else if./  return}}
+        <a href="/returnProduct/{{this._id}}" class="btn btn-warning w-25">Return product</a>
+  
+{{else if cancel}}
+        {{else}}
+        <b class="text-primary"> Delivery Expected By:{{this.dateDelivered}}</b>
+        <a href="/cancelOrder/{{this._id}}" class="btn btn-danger w-25">Cancel Order</a>
+{{/if}}
+    </div>
+</div>
+
+{{/each}}
+</div>
