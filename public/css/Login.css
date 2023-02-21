@@ -3,7 +3,7 @@ body{
 }
 
 .section {
-  background: url("/images/1.jpg");
+  background: url("https://res.cloudinary.com/dv5bvojzi/image/upload/v1676979167/HomeKart/1_wjsbax.jpg ");
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -208,32 +208,32 @@ td img{
   color: white;
 }
 .furniture{
-  background: url("/images/2076143.webp") !important;
+  background: url("https://res.cloudinary.com/dv5bvojzi/image/upload/v1676978765/HomeKart/2076143_ynj8vb.webp") !important;
   background-size:cover !important;
 }
 .home{
-  background: url("/images/applieiencs.webp") !important;
-  background-size:contain !important;
+  background: url("https://res.cloudinary.com/dv5bvojzi/image/upload/v1676978909/HomeKart/applieiencs_vj1dby.webp") !important;
+  background-size:cover !important;
 }
 .kitchen{
-  background: url("/images/kitchen.jpg") !important;
+  background: url("https://res.cloudinary.com/dv5bvojzi/image/upload/v1676978993/HomeKart/kitchen_rujfgu.jpg") !important;
   background-size:cover !important;
 }
 
 .eletrical{
-  background: url("/images/light.jpeg") !important;
+  background: url("https://res.cloudinary.com/dv5bvojzi/image/upload/v1676979037/HomeKart/light_jbe43n.jpg") !important;
   background-size:cover !important;
 }
 .decors{
-  background: url("/images/dec.jpg") !important;
+  background: url("https://res.cloudinary.com/dv5bvojzi/image/upload/v1676979088/HomeKart/dec_wfpzuq.jpg") !important;
   background-size:cover !important;
 }
 .plants{
-  background: url("/images/plants.webp") !important;
+  background: url("https://res.cloudinary.com/dv5bvojzi/image/upload/v1676979138/HomeKart/plants_qnabvf.webp") !important;
   background-size:cover !important;
 }
 .otp{
-  background-image: url("/images/1.jpg");
+  background-image: url("https://res.cloudinary.com/dv5bvojzi/image/upload/v1676979167/HomeKart/1_wjsbax.jpg");
   background-size:cover ;
 }
 
@@ -751,7 +751,7 @@ padding: 20px;
 }
 
 .couponSection{
-  background: url("/images/1.jpg");
+  background: url("https://res.cloudinary.com/dv5bvojzi/image/upload/v1676979167/HomeKart/1_wjsbax.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   color: white;

@@ -51,7 +51,7 @@
   <tbody>
       {{#each products}}
     <tr>
-      <td scope="row"><img src="/images/{{this.product.filename}}" alt=""></td>
+      <td scope="row"><img src="{{this.product.url}}" alt=""></td>
       <td>{{this.name}}</td>
       <td>{{this.category}}</td>
       <td>{{this.quantity}}</td>
@@ -69,8 +69,4 @@
 </table>
  </div>
 </div>
-   {{!-- <div class="paginate">
-  <a href="/admin/product/?page=1">1</a>
-  <a href="/admin/product/?page=2">2</a>
-  <a href="/admin/product/?page=3">3</a>
- </div> --}}
+

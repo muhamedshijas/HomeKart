@@ -13,6 +13,13 @@ const pdf = require('html-pdf')
 const fs = require('fs')
 const path = require('path')
 const alert = require('alert')
+const cloudinary=require('cloudinary').v2;
+
+cloudinary.config({
+    cloud_name:'dv5bvojzi',
+    api_key:'946871821531742',
+    api_secret:'wItlSu6khy3FBHyqAEtWL8MES3c'
+  });
 
 const getAdminHome = async (req, res) => {
     if (req.session.admin || req.session.staff) {
@@ -133,11 +140,6 @@ const searchUser = async (req, res) => {
     const userData = await UserModel.find({ name: new RegExp(name) }).lean()
     res.render('AdminUser', { userData })
 }
-
-// const getadminLogout = (req, res) => {
-//     req.session.admin = null
-//     res.redirect('/admin/login')
-// }
 
 const getAddCategory = (req, res) => {
     res.render('AddCategory')
@@ -342,13 +344,23 @@ const getAddProduct = async (req, res) => {
     res.render("AddProduct", { category })
 }
 
-const addProduct = (req, res) => {
+const addProduct = async(req, res) => {
+    let mainImage=req.files.product[0]
+    let subImages=req.files.subImages
+    let imageFile=await cloudinary.uploader.upload(mainImage.path,{folder:'HomeKart'})
+    let product=imageFile
+
+    for(let i in subImages){
+        let imageFile=await cloudinary.uploader.upload(subImages[i].path,{folder:'HomeKart'})
+        subImages[i]=imageFile
+    }
+
     ProductModel.create({
         name: req.body.name,
-        product: req.files.product[0],
-        productSub: req.files.subImages,
+        product:product, 
+        productSub:subImages,
         category: req.body.category,
-        price: req.body.price,
+        price: req.body.price, 
         quantity: req.body.quantity,
         description: req.body.description
 
@@ -373,13 +385,23 @@ const getEditProduct = async (req, res) => {
     res.render('EditProduct', { productDetials, category })
 }
 const editProduct = async (req, res) => {
+    let mainImage=req.files.product[0]
+    let subImages=req.files.subImages
+    let imageFile=await cloudinary.uploader.upload(mainImage.path,{folder:'HomeKart'})
+    let product=imageFile
+      
+    for(let i in subImages){
+        let imageFile=await cloudinary.uploader.upload(subImages[i].path,{folder:'HomeKart'})
+        subImages[i]=imageFile
+    }
+
     const _id = req.body._id
     if (req.files.product && req.files.subImages) {
         await ProductModel.findByIdAndUpdate(_id, {
             $set: {
                 name: req.body.name,
-                product: req.files.product[0],
-                productSub: req.files.subImages,
+                product: product,
+                productSub:subImages,
                 price: req.body.price,
                 quantity: req.body.quantity,
                 description: req.body.description
@@ -396,7 +418,7 @@ const editProduct = async (req, res) => {
                 price: req.body.price,
                 quantity: req.body.quantity,
                 description: req.body.description,
-                product: req.files.product[0],
+                product:product,
             }
         })
         return res.redirect('/admin/product')
@@ -409,7 +431,7 @@ const editProduct = async (req, res) => {
                 price: req.body.price,
                 quantity: req.body.quantity,
                 description: req.body.description,
-                productSub: req.files.subImages,
+                productSub:subImages, 
             }
         })
         return res.redirect('/admin/product')

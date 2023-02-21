@@ -22,10 +22,10 @@
         <div class="row">
           
             <div class="col-md-6 singleImage"> 
-                <img src="/images/{{product.product.filename}}" class="img-fluid" alt="" id="mainImg">
+                <img src="{{product.product.url}}" class="img-fluid" alt="" id="mainImg">
                 <div class="subImages">
                   {{#each product.productSub}}
-                  <img src="/images/{{this.filename}}" alt="" srcset="" id="subImg">
+                  <img src="{{this.url}}" alt="" srcset="" id="subImg">
                   {{/each}}
                 </div>
             </div>
@@ -50,14 +50,16 @@
        <div class=" container-fluid row d-flex align-items-center justify-content-around mt-5">
 {{#each recomendedProducts}}
     <div class="col-md-2 pro-cards">
+      <a href="/singleProduct/{{this._id}}"> 
       <div class="img-sec">
-        <img src="/images/{{this.product.filename}}" alt="" srcset="">
+        <img src="{{this.product.url}}" alt="" srcset="">
          </div>
         
         <div class="pro-head"><h4>{{this.name}}</h4></div>
         <div class="pro-category w-100" > <p>{{this.category}}</p></div>
          <div class="pro-price"><h6> Rs {{this.price}}</h6></div>
         <button class="btn btn-outline-success btn-lg btn-block pro-btn">Add to Cart</button>
+        </a>
     </div>
     {{/each}}
   </div>

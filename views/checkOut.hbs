@@ -25,7 +25,7 @@
     {{#each products}}
     <tr>
 
-      <td><img src="/images/{{this.product.filename}}" alt=""></td>
+      <td><img src="{{this.product.url}}" alt=""></td>
       <td>{{this.name}}</td>
       <td>Rs {{this.price}}</td>
       <td><a href="/removeFromCart/{{this._id}}" style="text-decoration: none; color:black"> <i class="ri-close-circle-fill"></i></a> </td>

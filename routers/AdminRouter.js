@@ -10,6 +10,9 @@ const upload=require('../middlewares/multer')
 const { getAdminHome, getAdminUser, getDeleteUser, getAdminBanned, getBanUser,getCoupons,getUnbanUser, searchUser, getAddCategory, addCategory, getCategory, deleteCategory, getOrder, getBanner,getEditCategory, editCategory, getOrders, searchOrders, getChangeStatus, changeStatus, getUnListedProducts, getAddcoupon,couponAdd, getdeleteCoupon, getAddBanner, bannerAdd, getBannerDelete, salesReport, getExportData, getSalesReport, filterOrder, getProduct, getAddProduct, addProduct, editProduct, searchProduct, getDeleteProduct, getEditProduct, getList } = require("../controllers/adminController");
 const { getAdminLogin, adminLogin, getadminLogout } = require("../controllers/adminAuthController");
 
+
+
+
 const router=express.Router();
 
 router.get('/',getAdminHome)
