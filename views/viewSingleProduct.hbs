@@ -3,7 +3,6 @@
     <div class="row product-section  ms-4">
       <div class="col-md-4 col-sm-2 logo"><a href="/">HomeKart</a></div>
       <div class="col-md-3   col-sm-2  adminpanel  mt-2"><a href="/viewAllProducts/?page=1"> All Products</a></div>
-
     </div>
   </div>
   <div class="col-md-3 col-sm-8">
@@ -16,11 +15,8 @@
   </div>
 </div>
 <div class="container">
-   
     <div class="singleProductSection">
-    
         <div class="row">
-          
             <div class="col-md-6 singleImage"> 
                 <img src="{{product.product.url}}" class="img-fluid" alt="" id="mainImg">
                 <div class="subImages">
@@ -34,19 +30,15 @@
                 <h2 class="text-center">{{product.name}}</h2>
                 <div class="wish heart"> <a href="/addtoWishList/{{product._id}}"><i class="ri-heart-3-line"></i></a></div>
                 </div>
-                       <div class="pro-quantity"><b class="text-danger"> Only {{product.quantity}} stocks Left</b></div>    
+                <div class="pro-quantity"><b class="text-danger"> Only {{product.quantity}} stocks Left</b></div>    
                 <h5>{{product.category}}</h5>
                 <p>{{product.description}}</p>
                 <h3>RS {{product.price}}.00</h3>
-
                 <a href="/addtoCart/{{product._id}}" class="btn btn-success">Add to Cart</a>
             </div>
-   
         </div>
-       
     </div>
 <div class="recomended mt-5"><h3>Recomended Products</h3></div>
-
        <div class=" container-fluid row d-flex align-items-center justify-content-around mt-5">
 {{#each recomendedProducts}}
     <div class="col-md-2 pro-cards">
@@ -64,5 +56,3 @@
     {{/each}}
   </div>
 </div>
-
-

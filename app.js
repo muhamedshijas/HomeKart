@@ -22,7 +22,7 @@ app.use('/admin',AdminRouter)
 app.use('/',UserRouter) 
 
        
-app.listen(2255,()=>{ 
+app.listen(2255,()=>{
     console.log("started on 2555")
 })
       
