@@ -107,6 +107,19 @@ const addQuantity = async (req, res) => {
     return res.redirect("/cart")
   }
 
+const minusQuantity = async (req, res) => {
+    let { cart } = await UserModel.findOne({ "cart.id": req.params.id }, { _id: 0, cart: { $elemMatch: { id: req.params.id } } })
+    if (cart[0].quantity <= 1) {
+      return res.redirect("/cart")
+    }
+    await UserModel.updateOne({ _id: req.session.user.id, cart: { $elemMatch: { id: req.params.id } } }, {
+      $inc: {
+        "cart.$.quantity": -1
+      }
+    })
+    return res.redirect("/cart")
+  }
+
 const checkOut = async (req, res) => {
     _id = req.session.user.id
     const address = req.body.address
@@ -165,7 +178,7 @@ const checkOut = async (req, res) => {
               customer_phone: newAddress.address[0].phone,
             },
             order_meta: {
-              return_url: "http://localhost:2255/return?order_id={order_id}",
+              return_url: "https://www.homekart.store/return?order_id={order_id}",
             },
           },
         };
@@ -244,18 +257,7 @@ const checkOut = async (req, res) => {
       res.render('checkOut', { totalAmount, discount, products, totalPrice, address, noAddress })
     }
   }
-const minusQuantity = async (req, res) => {
-    let { cart } = await UserModel.findOne({ "cart.id": req.params.id }, { _id: 0, cart: { $elemMatch: { id: req.params.id } } })
-    if (cart[0].quantity <= 1) {
-      return res.redirect("/cart")
-    }
-    await UserModel.updateOne({ _id: req.session.user.id, cart: { $elemMatch: { id: req.params.id } } }, {
-      $inc: {
-        "cart.$.quantity": -1
-      }
-    })
-    return res.redirect("/cart")
-  }
+
 
 const paymentReturnURL = async (req, res) => {
     try {
