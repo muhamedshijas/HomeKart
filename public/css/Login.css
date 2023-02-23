@@ -999,10 +999,9 @@ flex-direction: column;
 }
 @media  (max-width:500px){
   .userProfile{
- 
-    padding-left: 30px !important;
+    padding-left:0px !important;
     background-color:#AFBEA2;
-    width: 300px !important;
+    width: 350px !important;
   }
 }
 @media  (max-width:500px){
@@ -1016,6 +1015,11 @@ flex-direction: column;
 @media  (max-width:500px){
   .profile .addressCard  ,.profile .myWallet, .profile .adressAdd{
     margin-left: 50px !important;
+  }
+}
+@media  (max-width:500px){
+  .adressAdd{
+  width: 100px !important;
   }
 }
 
