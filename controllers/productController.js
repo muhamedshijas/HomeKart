@@ -24,6 +24,7 @@ const getViewAllProducts = async (req, res) => {
   }
 
 const allProSearch = async (req, res) => {
+  console.log(req.query.product)
     const name = req.query.product
     const products = await ProductModel.find({ name: new RegExp(name, 'i'), status: true }).lean()
     res.render('AllProducts', { products })
