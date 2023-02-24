@@ -1,24 +1,16 @@
-<div class="navbar row text-white">
-  <div class="col-md-8">
-    <div class="row product-section  ms-4">
-      <div class="col-md-4 logo">HomeKart</div>
-      <div class="col-md-6 adminpanel">
-        <form action="/categoryHomeProSearch" method="post">
-            <div class="search-form">
-            <input type="text" placeholder="Search Here" name="product">
-            <button type="submit"><i class="ri-search-line"></i></button>
-            </div>
-        </form>
+   <nav>
+        <div class="logo">
+            <a href=""><h5>HomeKart</h5></a>
+            <a href="/viewAllProducts/?page=1"><h5>All Products</h5></a>
         </div>
-    </div>
-  </div>
-  <div class="col-md-2 mt-0">
-    <div class="row logo">
-      <div class="col-md-6 adminlogo"><i class="ri-user-line"></i></div>
-      <div class="col-md-6 logout"><a href="/logout"><i class="ri-logout-box-r-line"></i></a></div>
-    </div>
-  </div>
-</div>
+
+        <div class="icons">
+      <div class="col-md-3 wishlist"> <a href="/wishlist"><i class="ri-heart-3-line"></i></a></div>
+      <div class="col-md-3 cart"> <a href="/cart"><i class="ri-shopping-cart-2-line"></a></i></div>
+      <div class="col-md-3 adminlogo"> <a href="/userProfile"><i class="ri-user-line"></i></a></div>
+      <div class="col-md-3 logout"><a href="/logout"><i class="ri-logout-box-r-line"></i></a></div>
+        </div>
+    </nav>
 
 <div class="category-head container d-flex align-items-center justify-content-center mt-5"><h3>Home Appliances</h3></div>
 
