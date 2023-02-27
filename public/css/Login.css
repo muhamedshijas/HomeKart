@@ -1177,6 +1177,22 @@ nav a{
     align-items: center;
     justify-content: space-around;
   }
+  .otp-input{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    gap: 10px;
+  }
+  .category-form{
+    height:260px
+  }
+  .add{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center
+  }
+
 }
 
 
