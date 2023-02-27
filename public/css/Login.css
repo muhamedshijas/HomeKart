@@ -981,10 +981,6 @@ nav a{
     visibility: hidden;
     width: 0px;
   }
-  .cart{
-    /* visibility: hidden;
-    width: 0px; */
-  }
   .cart a{
     width: 120px !important;
     height: 40px;
