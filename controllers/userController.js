@@ -44,8 +44,12 @@ const getWishlist = async (req, res) => {
   if (req.session.user) {
     const _id = req.session.user.id
     const { wishlist } = await UserModel.findOne({ _id }, { wishlist: 1 })
+    if (wishlist == "") {
+      noItem = "No items Found"
+      res.render('cart', { noItem })
+    }
     const products = await ProductModel.find({ _id: { $in: wishlist }, status: true }).lean()
-    res.render('wishlist', { products })
+    res.render('wishlist', { products ,noItem})
   }
   else {
     res.redirect('/login')
