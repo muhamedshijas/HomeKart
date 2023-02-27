@@ -46,7 +46,7 @@ const getWishlist = async (req, res) => {
     const { wishlist } = await UserModel.findOne({ _id }, { wishlist: 1 })
     if (wishlist == "") {
       noItem = "No items Found"
-      res.render('cart', { noItem })
+      res.render('wishlist', { noItem })
     }
     const products = await ProductModel.find({ _id: { $in: wishlist }, status: true }).lean()
     res.render('wishlist', { products ,noItem})
