@@ -936,12 +936,18 @@ nav a{
         justify-content: space-between;
         
     }
+    .icons .cart a{
+      font-size: 15px !important;
+      font-weight: 500;
+    }
     .logo{
         width: 40% !important;
         padding: 8px;
         display: flex;
         justify-content: space-between;
     }
+
+
     nav{
         display: flex;
         justify-content: space-between;
