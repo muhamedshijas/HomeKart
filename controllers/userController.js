@@ -48,8 +48,11 @@ const getWishlist = async (req, res) => {
       noItem = "No items Found"
       res.render('wishlist', { noItem })
     }
-    const products = await ProductModel.find({ _id: { $in: wishlist }, status: true }).lean()
-    res.render('wishlist', { products ,noItem})
+    else{
+
+      const products = await ProductModel.find({ _id: { $in: wishlist }, status: true }).lean()
+      res.render('wishlist', { products})
+    }
   }
   else {
     res.redirect('/login')
