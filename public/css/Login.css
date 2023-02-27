@@ -1,5 +1,7 @@
 body{
   overflow-x: hidden;
+  padding: 0px;
+  margin: 0px;
 }
 
 .section {
@@ -66,7 +68,7 @@ body{
 }
 
 .userlogin{
-    padding: 10px !important;
+    padding: 10px;
     width: 100% !important;
 }
 .userlogin input{
@@ -1157,6 +1159,23 @@ nav a{
 @media  (max-width:500px){
   .adressAdd{
   width: 100px !important;
+  }
+  .signup input{
+    width:250px;
+  }
+  .signup button{
+    width:180px !important;
+  }
+  .signup {
+    padding-left: 20px;
+    
+  }
+  .signup .userlogin{
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
   }
 }
 
