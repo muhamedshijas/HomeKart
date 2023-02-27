@@ -982,9 +982,17 @@ nav a{
     width: 0px;
   }
   .cart{
-    visibility: hidden;
-    width: 0px;
+    /* visibility: hidden;
+    width: 0px; */
   }
+  .cart a{
+    width: 120px !important;
+    height: 40px;
+    font-size: 10px;
+    padding: 10px;
+    font-weight: 600;
+  }
+
 }
 
 
