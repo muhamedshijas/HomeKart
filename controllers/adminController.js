@@ -50,6 +50,8 @@ const getAdminHome = async (req, res) => {
         for (let i = 1; i <= 12; i++) {
             monthlyData[i - 1] = monthlyDataObject[i] ?? 0
         }
+        const online=await OrderModel.find({paymentType:"paid"}).lean().countDocuments()
+        const cod=await OrderModel.find({paymentType:"Not Paid"}).lean().countDocuments()
         const userCount = await UserModel.find({ $and: [{ staff: false }, { admin: false }] }).lean().countDocuments()
         const productCount = await ProductModel.find().lean().countDocuments()
         const orderCount = await OrderModel.find().lean().countDocuments()
@@ -57,7 +59,7 @@ const getAdminHome = async (req, res) => {
         const userData = await UserModel.find({ $and: [{ staff: false }, { admin: false }] }).sort({ _id: -1 }).limit(5).lean()
         const orderData = await OrderModel.find().sort({ _id: -1 }).limit(5).lean()
         const products = await ProductModel.find().sort({ _id: -1 }).limit(5).lean()
-        res.render('AdminHome', { totalRevenue, userCount, productCount, orderCount, userData, orderData, products, totalDiscount, monthlyData, monthlyReturn })
+        res.render('AdminHome', { totalRevenue, userCount, productCount, orderCount, userData, orderData, products, totalDiscount, monthlyData, monthlyReturn,online,cod})
     }
     else {
         res.redirect('/admin/login')

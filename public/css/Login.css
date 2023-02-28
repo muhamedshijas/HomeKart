@@ -83,8 +83,8 @@ body{
 }
 .sidebar{
   background-color:#D9D9D9;
-  height: 100vh !important;
-
+  height: 100% !important;
+  position: static !important;
   width: 220px;
   color: black;
   font-weight:bold;
@@ -937,6 +937,13 @@ nav .icons{
 nav a{
   color: white;
   text-decoration: none;
+}
+
+.charts-section{
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+ 
 }
 @media (max-width:500px) {
     .icons{
