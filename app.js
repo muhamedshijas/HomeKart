@@ -6,6 +6,7 @@ const UserRouter=require('./routers/UserRouter')
 const AdminRouter=require('./routers/AdminRouter')
 const morgan=require("morgan")
 const dbConnect =require("./dbConnect")
+const Handlebars=require('handlebars')
 require("dotenv").config()
 dbConnect();
 const app=express()
@@ -23,6 +24,10 @@ app.set('view engine', 'hbs');
 app.use('/admin',AdminRouter)
 app.use('/',UserRouter) 
 
+Handlebars.registerHelper("inc", function(value, options)
+{
+    return parseInt(value) + 1;
+});
        
 app.listen(2255,()=>{
     console.log("started on 2555")

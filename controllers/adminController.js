@@ -50,8 +50,10 @@ const getAdminHome = async (req, res) => {
         for (let i = 1; i <= 12; i++) {
             monthlyData[i - 1] = monthlyDataObject[i] ?? 0
         }
-        const online=await OrderModel.find({paymentType:"paid"}).lean().countDocuments()
-        const cod=await OrderModel.find({paymentType:"Not Paid"}).lean().countDocuments()
+        const online=await OrderModel.find({paymentType:"online"}).lean().countDocuments()
+        const cod=await OrderModel.find({paymentType:"COD"}).lean().countDocuments()
+        console.log(online)
+        console.log(cod)
         const userCount = await UserModel.find({ $and: [{ staff: false }, { admin: false }] }).lean().countDocuments()
         const productCount = await ProductModel.find().lean().countDocuments()
         const orderCount = await OrderModel.find().lean().countDocuments()
@@ -307,8 +309,9 @@ const changeStatus = async (req, res) => {
     const _id = req.body._id
     const orders = await OrderModel.findOne({ _id }).lean()
     const newStatus = req.body.status
+    console.log(newStatus)
     if (newStatus == "Delivered") {
-        await OrderModel.findByIdAndUpdate(_id, { $set: { status: newStatus, return: true } })
+        await OrderModel.findByIdAndUpdate(_id, { $set: { status: newStatus, return: true ,delivered:true} })
     }
     else if (newStatus == "CannotReturn") {
         await OrderModel.findByIdAndUpdate(_id, { $set: { status: "Pending", return: false, cancel: false, returnStatus: false } })

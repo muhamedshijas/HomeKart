@@ -186,7 +186,7 @@ const checkOut = async (req, res) => {
               customer_phone: newAddress.address[0].phone,
             },
             order_meta: {
-              return_url: "https://homekart.store/return?order_id={order_id}",
+              return_url: "http://homekart.store/return?order_id={order_id}",
             },
           },
         };

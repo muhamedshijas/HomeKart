@@ -83,7 +83,7 @@ body{
 }
 .sidebar{
   background-color:#D9D9D9;
-  height: 100% !important;
+  height: 100vh !important;
   position: static !important;
   width: 220px;
   color: black;
@@ -945,6 +945,14 @@ nav a{
   justify-content: space-around;
  
 }
+
+.userOrderTable td{
+  height: 60px !important;
+  padding-top: 20px !important;  
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
 @media (max-width:500px) {
     .icons{
         width: 40%;
@@ -1061,6 +1069,13 @@ nav a{
    display: flex;
    justify-content: space-around !important;
 
+  }
+  .userOrderTable th{
+    font-size: 15px !important;
+    font-weight: 500 !important;
+  }
+  .userOrderTable td{
+    font-size: 12px;
   }
 }
 @media (max-width:500px) {

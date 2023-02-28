@@ -117,7 +117,7 @@ const getUserOrders = async (req, res) => {
 const getCancelOrder = async (req, res) => {
   const _id = req.params.id
   const orders = await OrderModel.findOne({ _id }).lean()
-  await OrderModel.findOneAndUpdate({ _id }, { $set: { status: "Cancelled", paymentType: "Not Paid", cancel: true } }).lean()
+  await OrderModel.findOneAndUpdate({ _id }, { $set: { status: "Cancelled", cancel: true } }).lean()
   const proId = orders.orderItems._id
   const quantity = orders.quantity
   await ProductModel.findByIdAndUpdate({ _id: proId }, { $inc: { quantity: +quantity } })

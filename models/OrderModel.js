@@ -49,6 +49,10 @@ const orderSchema= new mongoose.Schema({
    returnStatus:{
       type:Boolean,
       default:false,
+   },
+   delivered:{
+      type:Boolean,
+      default:false
    }
 });
 
