@@ -86,7 +86,7 @@ const userSignup = async (req, res) => {
             pass: process.env.PASSWORD, 
           },
         });
-        var mailOptions = {
+        let mailOptions = {
           from: 'muhamedshijasm@gmail.com',
           to: req.body.email,
           subject: "Homekart Email verification",
@@ -154,7 +154,7 @@ const forgetPassword = async (req, res) => {
   
   
       });
-      var mailOptions = {
+      let mailOptions = {
         from: "muhamedshijasm@gmail.com",
         to: req.body.email,
         subject: "Homekart Email verification",
@@ -215,7 +215,7 @@ const getReset = (req, res) => {
             pass: process.env.PASSWORD, 
         },
       });
-      var mailOptions = {
+      let mailOptions = {
         from: "muhamedshijasm@gmail.com",
         to: email,
         subject: "Homekart Email verification",

@@ -155,7 +155,12 @@ const checkOut = async (req, res) => {
         }
       }
       const payment = req.body.Payment
+      console.log(payment)
       if (payment == "Paid") {
+        if(req.session.coupon){
+          var discount=coupon.discount
+          totalPrice=totalPrice-discount
+        }
         let orderId = "order_" + Date.now().toString(36) + Math.random().toString(36).substr(2);
         const options = {
           method: "POST",
@@ -178,7 +183,7 @@ const checkOut = async (req, res) => {
               customer_phone: newAddress.address[0].phone,
             },
             order_meta: {
-              return_url: "https://www.homekart.store/return?order_id={order_id}",
+              return_url: "http://localhost:2255/return?order_id={order_id}",
             },
           },
         };
@@ -206,6 +211,7 @@ const checkOut = async (req, res) => {
   
           totalPrice = (cart[i].quantity * item.price) + 40
           if (coupon) {
+            console.log(coupon)
             var discount = coupon.discount
             totalPrice = totalPrice - discount
           }
@@ -308,8 +314,8 @@ const paymentReturnURL = async (req, res) => {
           totalPrice = (cart[i].quantity * item.price) + 40
           if (req.session.coupon) {
             let couponCode = req.session.coupon.code
-            const coupon = await CouponModel.findOne({ code: couponCode }).lean()
-            var discount = coupon.discount
+            const coupon = await CouponModel.findOne({ code: couponCode })
+            let discount = coupon.discount
             totalPrice = totalPrice - discount
           }
           if (req.session.wallet) {
@@ -342,10 +348,14 @@ const paymentReturnURL = async (req, res) => {
         await UserModel.findByIdAndUpdate(req.session.user.id, { $set: { cart: [] } })
         req.session.userAddress = null
         return res.render("succesfull")
-      } else {
+      } 
+      else 
+      {
         return res.send("payment failed")
+        console.log("error")
       }
-    } catch (err) {
+    } 
+      catch (err) {
       console.log(err)
       return res.send("payment failed")
     }

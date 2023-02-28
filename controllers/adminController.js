@@ -212,10 +212,10 @@ const getOrders = async (req, res) => {
 const searchOrders = async (req, res) => {
     const name = req.body.name
     const orders = await OrderModel.find({ user: new RegExp(name, 'i') }).lean()
-    var totalcount = await OrderModel.find().lean().countDocuments()
-    var pendingCount = await OrderModel.find({ status: "pending" }).lean().countDocuments()
-    var deliveredCount = await OrderModel.find({ status: "Delivered" }).lean().countDocuments()
-    var cancelCount = await OrderModel.find({ status: "Cancelled" }).lean().countDocuments()
+    let totalcount = await OrderModel.find().lean().countDocuments()
+    let pendingCount = await OrderModel.find({ status: "pending" }).lean().countDocuments()
+    let deliveredCount = await OrderModel.find({ status: "Delivered" }).lean().countDocuments()
+    let cancelCount = await OrderModel.find({ status: "Cancelled" }).lean().countDocuments()
     res.render('AdminOrder', { orders, totalcount, pendingCount, deliveredCount, cancelCount })
 }
 
@@ -321,11 +321,11 @@ const filterOrder = async (req, res) => {
         }
     })
     const { orderItems } = await OrderModel.find({ orderItems: 1 })
-    var returnCount = await OrderModel.find({ status: "Returned" }).lean().countDocuments()
-    var totalcount = await OrderModel.find().lean().countDocuments()
-    var pendingCount = await OrderModel.find({ status: "pending" }).lean().countDocuments()
-    var deliveredCount = await OrderModel.find({ status: "Delivered" }).lean().countDocuments()
-    var cancelCount = await OrderModel.find({ status: "Cancelled" }).lean().countDocuments()
+    let returnCount = await OrderModel.find({ status: "Returned" }).lean().countDocuments()
+    let totalcount = await OrderModel.find().lean().countDocuments()
+    let pendingCount = await OrderModel.find({ status: "pending" }).lean().countDocuments()
+    let deliveredCount = await OrderModel.find({ status: "Delivered" }).lean().countDocuments()
+    let cancelCount = await OrderModel.find({ status: "Cancelled" }).lean().countDocuments()
     res.render('AdminOrder', { orders, totalcount, pendingCount, deliveredCount, cancelCount, returnCount })
 }
 
