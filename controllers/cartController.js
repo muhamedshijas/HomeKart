@@ -161,7 +161,7 @@ const checkOut = async (req, res) => {
           var discount=coupon.discount
           totalPrice=totalPrice-discount
         }
-        
+
         let orderId = "order_" + Date.now().toString(36) + Math.random().toString(36).substr(2);
         const options = {
           method: "POST",
@@ -184,7 +184,7 @@ const checkOut = async (req, res) => {
               customer_phone: newAddress.address[0].phone,
             },
             order_meta: {
-              return_url: "https://www.homekart.store/return?order_id={order_id}",
+              return_url: "https://homekart.store/return?order_id={order_id}",
             },
           },
         };
