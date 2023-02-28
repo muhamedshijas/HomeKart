@@ -161,6 +161,7 @@ const checkOut = async (req, res) => {
           var discount=coupon.discount
           totalPrice=totalPrice-discount
         }
+        
         let orderId = "order_" + Date.now().toString(36) + Math.random().toString(36).substr(2);
         const options = {
           method: "POST",
