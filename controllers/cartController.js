@@ -155,8 +155,10 @@ const checkOut = async (req, res) => {
         }
       }
       const payment = req.body.Payment
+
       console.log(payment)
-      if (payment == "Paid") {
+      if (payment == "online")
+       {
         if(req.session.coupon){
           var discount=coupon.discount
           totalPrice=totalPrice-discount
@@ -184,7 +186,7 @@ const checkOut = async (req, res) => {
               customer_phone: newAddress.address[0].phone,
             },
             order_meta: {
-              return_url: "https://homekart.store/return?order_id={order_id}",
+              return_url: "http://localhost:2255/return?order_id={order_id}",
             },
           },
         };
@@ -283,7 +285,9 @@ const paymentReturnURL = async (req, res) => {
       };
   
       const response = await axios.request(options);
+      console.log(response.data.order_status)
       if (response.data.order_status == "PAID") {
+        console.log(response.data.order_status)
         const _id = req.session.user.id
         const user = await UserModel.findOne({ _id }).lean()
         const { cart } = await UserModel.findOne({ _id }, { cart: 1 })
@@ -304,7 +308,7 @@ const paymentReturnURL = async (req, res) => {
         const address = req.session.userAddress.id
         let newAddress = await UserModel.findOne({ _id }, { _id: 0, address: { $elemMatch: { id: address } } })
         const wallet = req.body.wallet
-        const payment = "paid"
+        const payment = "online"
         let orders = []
         let i = 0
         for (let item of products) {

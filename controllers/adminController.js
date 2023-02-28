@@ -308,19 +308,19 @@ const changeStatus = async (req, res) => {
     const orders = await OrderModel.findOne({ _id }).lean()
     const newStatus = req.body.status
     if (newStatus == "Delivered") {
-        await OrderModel.findByIdAndUpdate(_id, { $set: { status: newStatus, paymentType: "Paid", return: true } })
+        await OrderModel.findByIdAndUpdate(_id, { $set: { status: newStatus, return: true } })
     }
     else if (newStatus == "CannotReturn") {
-        await OrderModel.findByIdAndUpdate(_id, { $set: { status: "Pending", paymentType: "Not Paid", return: false, cancel: false, returnStatus: false } })
+        await OrderModel.findByIdAndUpdate(_id, { $set: { status: "Pending", return: false, cancel: false, returnStatus: false } })
     }
     else if (newStatus == "ReturnProduct") {
-        await OrderModel.findByIdAndUpdate(_id, { $set: { status: "Returned", paymentType: "Paid", return: true } })
+        await OrderModel.findByIdAndUpdate(_id, { $set: { status: "Returned",  return: true } })
         const totalPrice = orders.totalPrice
         await UserModel.findOneAndUpdate({ _id: orders.userId }, { $inc: { wallet: +totalPrice } })
 
     }
     else {
-    await OrderModel.findByIdAndUpdate(_id, { $set: { status: newStatus, paymentType: "Not Paid", return: false, cancel: false } })
+    await OrderModel.findByIdAndUpdate(_id, { $set: { status: newStatus,  return: false, cancel: false } })
     }
     res.redirect('/admin/orders')
 }
