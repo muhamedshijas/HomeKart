@@ -135,4 +135,7 @@ const getReturnProduct = async (req, res) => {
   await ProductModel.findByIdAndUpdate({ _id: proId }, { $inc: { quantity: +quantity } })
   res.redirect("back")
 }
-module.exports = {getUserHome,getWishlist, getUserProfile, getAddtoWishlist, removeFromWishlist, pay, getAddAddress, addAddress, getRemoveAddress,getUserOrders,getCancelOrder, getReturnProduct}
+const errorPage=(req,res)=>{
+  res.render("errorPage")
+}
+module.exports = {getUserHome,getWishlist,errorPage,getUserProfile, getAddtoWishlist, removeFromWishlist, pay, getAddAddress, addAddress, getRemoveAddress,getUserOrders,getCancelOrder, getReturnProduct}

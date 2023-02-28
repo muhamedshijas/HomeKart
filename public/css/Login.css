@@ -764,7 +764,17 @@ padding: 20px;
   background-color: #f9e78c;
   border-radius: 9px;
 }
-
+.errorCard a{
+  text-decoration: none;
+  font-weight: 600;
+}
+.errorCard img{
+  width: 320px;
+  height: 300px;
+}
+.errorCard h1{
+  font-size: 60px;
+}
 .dashboard{
   width: 200px !important;
   width: 200px !important;

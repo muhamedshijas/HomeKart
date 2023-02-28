@@ -231,6 +231,7 @@ const checkOut = async (req, res) => {
           }
           orders.push({
             address: newAddress.address[0],
+            user:newAddress.address[0].name,
             orderItems: item,
             userId: req.session.user.id,
             totalPrice: totalPrice,

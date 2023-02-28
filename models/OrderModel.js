@@ -4,6 +4,9 @@ const orderSchema= new mongoose.Schema({
    orderItems:{
    type:Object
    },
+   user:{
+      type:String
+   },
    address:{
     type:Object
    },

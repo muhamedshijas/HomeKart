@@ -7,7 +7,7 @@ const ProductModel=require("../models/ProductModel")
 const multer=require('multer')
 const userRouter=require('../routers/UserRouter');
 const upload=require('../middlewares/multer')
-const { getAdminHome, getAdminUser, getDeleteUser, getAdminBanned, getBanUser,getCoupons,getUnbanUser, searchUser, getAddCategory, addCategory, getCategory, deleteCategory, getOrder, getBanner,getEditCategory, editCategory, getOrders, searchOrders, getChangeStatus, changeStatus, getUnListedProducts, getAddcoupon,couponAdd, getdeleteCoupon, getAddBanner, bannerAdd, getBannerDelete, salesReport, getExportData, getSalesReport, filterOrder, getProduct, getAddProduct, addProduct, editProduct, searchProduct, getDeleteProduct, getEditProduct, getList } = require("../controllers/adminController");
+const { getAdminHome, getAdminUser, getDeleteUser, getAdminBanned, getBanUser,getCoupons,getUnbanUser, searchUser, getAddCategory, addCategory, getCategory, deleteCategory, getOrder, getBanner,getEditCategory, editCategory, getOrders, searchOrders, getChangeStatus, changeStatus, getUnListedProducts, getAddcoupon,couponAdd, getdeleteCoupon, getAddBanner, bannerAdd, getBannerDelete, salesReport, getExportData, getSalesReport, filterOrder, getProduct, getAddProduct, addProduct, editProduct, searchProduct, getDeleteProduct, getEditProduct, getList, adminErrorPage } = require("../controllers/adminController");
 const { getAdminLogin, adminLogin, getadminLogout } = require("../controllers/adminAuthController");
 
 
@@ -54,4 +54,5 @@ router.post('/bannerAdd',upload.single('banners'),bannerAdd)
 router.get('/bannerDelete/:id',getBannerDelete)
 router.post('/salesRepot',salesReport)
 router.get('/salesReport',getSalesReport)
+router.get('/error',adminErrorPage)
 module.exports= router;  

@@ -16,14 +16,20 @@ const alert = require('alert')
 
 
 const getAdminLogin = (req, res) => {
+   try{
     if (req.session.admin) {
         res.redirect('/admin')
     }
     else {
         res.render('AdminLogin')
     }
+   }
+   catch{
+    res.send("error")
+   }
 }
 const adminLogin = async (req, res) => {
+   try{
     if (req.body.email == "" || req.body.password == "") {
         const adminFillErr = "please Fill the requiered fields"
         res.render('AdminLogin', { adminFillErr })
@@ -59,9 +65,18 @@ const adminLogin = async (req, res) => {
         const adminErr = "No data found"
         res.render('AdminLogin', { adminErr })
     }
+   }
+   catch{
+    res.send("error")
+   }
 }
 const getadminLogout = (req, res) => {
+   try{
     req.session.admin = null
     res.redirect('/admin/login')
+   }
+   catch{
+    res.send("error")
+   }
 }
 module.exports = {getAdminLogin,adminLogin,getadminLogout}
