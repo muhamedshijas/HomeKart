@@ -281,8 +281,10 @@ const getOrders = async (req, res) => {
 const searchOrders = async (req, res) => {
     try{
         const name = req.body.name
-        console.log(name)
-    const orders = await OrderModel.find({ user: new RegExp(name, 'i') }).lean()
+        const ordersArr = await OrderModel.find({ user: new RegExp(name, 'i') }).lean()
+        let orders = ordersArr.map(item => {
+            return { ...item, dateDelivered: item.dateDelivered.toLocaleDateString(), dateOrdered: item.dateOrdered.toLocaleDateString(), userId: item.userId }
+        })   
     let totalcount = await OrderModel.find().lean().countDocuments()
     let pendingCount = await OrderModel.find({ status: "pending" }).lean().countDocuments()
     let deliveredCount = await OrderModel.find({ status: "Delivered" }).lean().countDocuments()
