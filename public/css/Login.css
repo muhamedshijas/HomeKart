@@ -1031,6 +1031,18 @@ nav a{
     padding: 10px;
     font-weight: 600;
   }
+  .orderImages img{
+    width: 40px!important;
+    height: 42px !important;
+  }
+  .orderImages{
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .userOrderTable{
+    width: 350px !important;
+    margin: 0px !important;
+  }
 
 }
 

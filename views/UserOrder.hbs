@@ -17,7 +17,7 @@
   <thead class="bg-success text-white">
     <tr>
       
-      <th scope="col">#</th>
+      <th scope="col">Image</th>
       <th scope="col">Product</th>
       <th scope="col">Total Price</th>
       <th scope="col">Status</th>
@@ -27,7 +27,7 @@
   <tbody>
     {{#each orders}}
     <tr class="">
-      <td>{{inc @index}}</td>
+      <td class="orderImages"><img src="{{this.orderItems.product.secure_url}}" alt=""></td>
       <td>{{this.orderItems.name}}</td>
       <td>Rs {{this.totalPrice}}</td>
          {{#if this.return}}
