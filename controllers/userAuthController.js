@@ -13,15 +13,20 @@ const axios = require("axios")
 
 let randomOtp;
 const getUserLogin = (req, res) => {
-    if (!req.session.user) {
-      res.render("UserLogin");
-    } else {
-      res.redirect("/");
+    try{
+      if (!req.session.user) {
+        res.render("UserLogin");
+      } else {
+        res.redirect("/");
+      }
+    }catch{
+      res.redirect('/error')
     }
   }
 
 const userLogin = async (req, res) => {
-    const email = req.body.email
+    try{
+      const email = req.body.email
     if (req.body.email == "" || req.body.password == "") {
       const fillErr = "Please fill the requiered fields";
       res.render("UserLogin", { fillErr });
@@ -43,14 +48,22 @@ const userLogin = async (req, res) => {
         res.render('UserSignup', { noUser })
       }
     }
+    }catch{
+      res.redirect('/error')
+    }
   }
 
 const getUserSignup = async (req, res) => {
-    res.render("UserSignup");
+ try{
+  res.render("UserSignup");
+ }catch{
+  res.redirect('/error')
+ }
   }
 
 const userSignup = async (req, res) => {
-    const email = req.body.email
+    try{
+      const email = req.body.email
     const blockuser = await UserModel.findOne({ $and: [{ email: email }, { ban: true }] });
     if (blockuser) {
   
@@ -107,10 +120,17 @@ const userSignup = async (req, res) => {
   
       }
     }
+    }catch{
+      res.redirect('/error')
+    }
   }
 
 const getOtp = (req, res) => {
-    res.render('otpVerification')
+    try{
+      res.render('otpVerification')
+    }catch{
+      res.redirect('/error')
+    }
   }
 
 const verifyOTP = (req, res) => {

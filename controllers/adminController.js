@@ -640,11 +640,15 @@ const getList = async (req, res) => {
     }
 }
 const getAdminSingleOrder=async(req,res)=>{
-    const _id=req.params.id
+    try{
+        const _id=req.params.id
     const orders=await OrderModel.findOne({_id}).lean()
     const dateDelivered=orders.dateDelivered.toLocaleDateString()
 const dateOrdered=orders.dateOrdered.toLocaleDateString()
     res.render('AdminSingleOrder',{orders,dateDelivered,dateOrdered})
+    }catch{
+        res.redirect('/admin/error')
+    }
 
 }
 const adminErrorPage=(req,res)=>{
