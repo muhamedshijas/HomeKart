@@ -953,6 +953,18 @@ nav a{
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
 }
+.singleOrderSection{
+  display: flex;
+  align-items: center;
+  justify-content: space-around !important;
+  padding: 20px;
+}
+.singleOrderSection .userOrderDetials{
+ display: flex;
+ flex-direction:column;
+ gap: 0px !important;
+}
+
 @media (max-width:500px) {
     .icons{
         width: 40%;

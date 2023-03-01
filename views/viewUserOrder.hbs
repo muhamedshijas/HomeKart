@@ -1,0 +1,50 @@
+   <nav>
+        <div class="logo">
+            <a href=""><h5>HomeKart</h5></a>
+            <a href="/viewAllProducts/?page=1"><h5>All Products</h5></a>
+        </div>
+
+        <div class="icons">
+      <div class="col-md-3 wishlist"> <a href="/wishlist"><i class="ri-heart-3-line"></i></a></div>
+      <div class="col-md-3 cart"> <a href="/cart"><i class="ri-shopping-cart-2-line"></a></i></div>
+      <div class="col-md-3 adminlogo"> <a href="/userProfile"><i class="ri-user-line"></i></a></div>
+      <div class="col-md-3 logout"><a href="/logout"><i class="ri-logout-box-r-line"></i></a></div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="row singleOrderSection">
+            <div class="col-md-5 singleOrderImage"> 
+                <img src="{{orders.orderItems.product.secure_url}}" class="img-fluid" alt="" id="mainImg">
+            </div>
+            <div class="col-md-7  userorderDetials h-100">
+                <h3>{{orders.orderItems.name}}</h3>
+                <div class="pro-quantity"><h6>Quantity:{{orders.quantity}}</h6></div>    
+                
+                <p>Order Status:{{orders.status}}</p>
+                <p>Date Ordered : {{dateOrdered}}</p>
+                <p>Delivery expectd by:{{dateDelivered}}</p>
+                <p>Discount: {{orders.discount}}</p>
+                <h4 class="text-dark">Total Price:{{orders.totalPrice}}</h4>
+                <div class="OrderAddress">
+                   <h6> Delivery Address</h6>
+                   <p> name:{{orders.address.name}}</p>
+                    <p>Address:{{orders.address.Address}}</p>
+                    <p>city:{{orders.address.city}}</p>
+                    <p>landmark:{{orders.address.landmark}}</p>
+                    <p>pincode:{{orders.address.pincode}}</p>
+                   <p>Phone NO:{{orders.address.phone}}</p>
+                </div>
+                {{#if orders.return}}
+                <a href="/returnProduct/{{orders._id}}" class="btn btn-warning">Return</a>
+                <a href=""></a>
+                {{else if orders.cancel}}
+                {{else if orders.returnStatus}}
+                
+                {{else}}
+                <a href="/cancelOrder/{{orders._id}}" class="btn btn-danger">Cancel</a>
+                {{/if}}
+     </div>
+ 
+    </div>

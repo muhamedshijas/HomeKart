@@ -314,10 +314,10 @@ const changeStatus = async (req, res) => {
         await OrderModel.findByIdAndUpdate(_id, { $set: { status: newStatus, return: true ,delivered:true} })
     }
     else if (newStatus == "CannotReturn") {
-        await OrderModel.findByIdAndUpdate(_id, { $set: { status: "Pending", return: false, cancel: false, returnStatus: false } })
+        await OrderModel.findByIdAndUpdate(_id, { $set: { status: "Pending", return: false, cancel: false, returnStatus: false} })
     }
     else if (newStatus == "ReturnProduct") {
-        await OrderModel.findByIdAndUpdate(_id, { $set: { status: "Returned",  return: true } })
+        await OrderModel.findByIdAndUpdate(_id, { $set: { status: "Returned" ,returnStatus:'false',cancel:true } })
         const totalPrice = orders.totalPrice
         await UserModel.findOneAndUpdate({ _id: orders.userId }, { $inc: { wallet: +totalPrice } })
 

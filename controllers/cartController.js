@@ -186,7 +186,7 @@ const checkOut = async (req, res) => {
               customer_phone: newAddress.address[0].phone,
             },
             order_meta: {
-              return_url: "http://homekart.store/return?order_id={order_id}",
+              return_url: "https://homekart.store/return?order_id={order_id}",
             },
           },
         };
@@ -318,10 +318,11 @@ const paymentReturnURL = async (req, res) => {
             }
           })
           totalPrice = (cart[i].quantity * item.price) + 40
+          let discount
           if (req.session.coupon) {
             let couponCode = req.session.coupon.code
             const coupon = await CouponModel.findOne({ code: couponCode })
-            let discount = coupon.discount
+             discount = coupon.discount
             totalPrice = totalPrice - discount
           }
           if (req.session.wallet) {
@@ -348,6 +349,7 @@ const paymentReturnURL = async (req, res) => {
             totalPrice: totalPrice,
             quantity: cart[i].quantity,
             paymentType: payment,
+            discount:discount
           })
           i++
         }

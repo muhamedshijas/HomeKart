@@ -30,12 +30,16 @@
       <td>{{inc @index}}</td>
       <td>{{this.orderItems.name}}</td>
       <td>Rs {{this.totalPrice}}</td>
-         {{#if this.delivered}}
+         {{#if this.return}}
       <td class="text-success">{{this.status}}</td>
+      {{else if this.cancel}}
+      <td class="text-danger">{{this.status}}</td>
+      {{else if this.returnStatus}}
+      <td class="text-dark">{{this.status}}</td>
       {{else}}
       <td class="text-primary">{{this.status}}</td>
       {{/if}}
-      <td scope="row"><a href="/viewOrder">View</a></td>
+      <td scope="row"><a href="/viewOrder/{{this._id}}">View</a></td>
     </tr>
     {{/each}}
   </tbody>

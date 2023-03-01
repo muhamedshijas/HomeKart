@@ -128,7 +128,7 @@ const getReturnProduct = async (req, res) => {
   const oId = req.params.id
   const orders = await OrderModel.findOne({ _id: oId }).lean()
   const totalPrice = orders.totalPrice
-  await OrderModel.findByIdAndUpdate({ _id: oId }, { $set: { status: "Return Processing", returnStatus: true } })
+  await OrderModel.findByIdAndUpdate({ _id: oId }, { $set: { status: "Return Processing", returnStatus: true,return:false} })
   const user = await UserModel.find({ _id }).lean()
   const proId = orders.orderItems._id
   const quantity = orders.quantity
@@ -138,4 +138,12 @@ const getReturnProduct = async (req, res) => {
 const errorPage=(req,res)=>{
   res.render("errorPage")
 }
-module.exports = {getUserHome,getWishlist,errorPage,getUserProfile, getAddtoWishlist, removeFromWishlist, pay, getAddAddress, addAddress, getRemoveAddress,getUserOrders,getCancelOrder, getReturnProduct}
+const getViewOrder=async(req,res)=>{
+  const _id=req.params.id
+const orders=await OrderModel.findOne({_id}).lean()
+console.log(orders)
+const dateDelivered=orders.dateDelivered.toLocaleDateString()
+const dateOrdered=orders.dateOrdered.toLocaleDateString()
+  res.render('viewUserOrder',{orders,dateDelivered,dateOrdered})
+}
+module.exports = {getUserHome,getWishlist,errorPage,getUserProfile, getAddtoWishlist, removeFromWishlist, pay, getAddAddress, addAddress, getRemoveAddress,getUserOrders,getCancelOrder, getReturnProduct,getViewOrder}

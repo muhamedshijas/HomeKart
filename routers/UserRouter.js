@@ -3,7 +3,7 @@ const { getCart, getAddtoCart, getRemoveFromCart, getCheckOut, checkOut, addQuan
 const { getCategoryFurniture, furnitureCategorySearch, getViewAllProducts, allProSearch, sortProducts, filterProducts, getSingleProduct } = require("../controllers/productController");
 const { getUserLogin, userLogin, getUserSignup, userSignup, getOtp, verifyOTP, getVerifyOTP, getForgetPassword, forgetPassword, verifyPasswordOtp, updatePassword, getReset, userLogout } = require("../controllers/userAuthController");
 const router = express.Router();
-const {getUserHome, getWishlist, getUserProfile, getAddtoWishlist, removeFromWishlist,  pay, getAddAddress,addAddress, getRemoveAddress, getUserOrders,getCancelOrder, getReturnProduct, errorPage} = require("../controllers/userController");
+const {getUserHome, getWishlist, getUserProfile, getAddtoWishlist, removeFromWishlist,  pay, getAddAddress,addAddress, getRemoveAddress, getUserOrders,getCancelOrder, getReturnProduct, errorPage, getViewOrder} = require("../controllers/userController");
 const verifyUser = require("../middlewares/userSession");
 
 router.post("/loginSub",userLogin);
@@ -49,6 +49,7 @@ router.post('/checkOut',checkOut)
 router.get('/addCoupon',getApplyCoupon)
 router.post('/applyCoupon',applyCoupon)
 router.get('/return', paymentReturnURL)
+router.get('/viewOrder/:id',getViewOrder)
 router.post('/pay',pay)
 
 module.exports = router;         
