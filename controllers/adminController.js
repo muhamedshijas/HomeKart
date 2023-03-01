@@ -68,7 +68,7 @@ const getAdminHome = async (req, res) => {
     }
   }
   catch{
-    res.redirect('/error')
+    res.redirect('/admin/error')
 }
 }
 
@@ -104,7 +104,7 @@ const salesReport = async (req, res) => {
             })
         }
     }catch{
-        res.redirect('/error')
+        res.redirect('/admin/error')
     }
 }
 
@@ -120,7 +120,7 @@ const getAdminUser = async (req, res) => {
     }
  }
  catch{
-    res.redirect('/error')
+    res.redirect('/admin/error')
  }
 }
 
@@ -141,7 +141,7 @@ const getDeleteUser = (req, res) => {
         })
     }
     catch{
-        res.redirect('/error')
+        res.redirect('/admin/error')
     }
 }
 
@@ -152,7 +152,7 @@ const getBanUser = async (req, res) => {
     res.redirect('/admin/user')
     }
     catch{
-        res.redirect('/error')
+        res.redirect('/admin/error')
     }
 
 }
@@ -163,7 +163,7 @@ const getUnbanUser = async (req, res) => {
     await UserModel.findByIdAndUpdate({ _id }, { $set: { staff: false } })
     res.redirect('/admin/user')
     }catch{
-        res.redirect("/error")
+        res.redirect("/admin/error")
     }
 }
 
@@ -173,7 +173,7 @@ const searchUser = async (req, res) => {
     const userData = await UserModel.find({ name: new RegExp(name) }).lean()
     res.render('AdminUser', { userData })
     }catch{
-        res.redirect('/error')
+        res.redirect('/admin/error')
     }
 }
 
@@ -182,7 +182,7 @@ const getAddCategory = (req, res) => {
         res.render('AddCategory')
     }
     catch{
-        res.redirect('/error')
+        res.redirect('/admin/error')
     }
 }
 
@@ -200,7 +200,7 @@ const addCategory = async (req, res) => {
         res.redirect('/admin/category')
     }
   }catch{
-    res.redirect('/error')
+    res.redirect('/admin/error')
   }
 }
 
@@ -210,7 +210,7 @@ const getCategory = async (req, res) => {
     res.render('AdminCategory', { categories })
   }
   catch{
-    res.redirect('/error')
+    res.redirect('/admin/error')
   }
 }
 
@@ -227,7 +227,7 @@ const deleteCategory = (req, res) => {
         })
   }
   catch{
-    res.redirect('/error')
+    res.redirect('/admin/error')
   }
 }
 
@@ -236,7 +236,7 @@ const getOrder = (req, res) => {
     res.render('AdminOrder')
    }
    catch{
-    res.redirect('/error')
+    res.redirect('/admin/error')
    }
 }
 
@@ -247,7 +247,7 @@ const getEditCategory = async (req, res) => {
     res.render('editCategory', { category })
    }
    catch{
-    res.redirect('/error')
+    res.redirect('/admin/error')
    }
 }
 
@@ -260,7 +260,7 @@ const editCategory = async (req, res) => {
     res.redirect('/admin/category')
   }
   catch{
-    res.redirect('/error')
+    res.redirect('/admin/error')
   }
 }
 
@@ -278,7 +278,7 @@ const getOrders = async (req, res) => {
     let cancelCount = await OrderModel.find({ status: "Cancelled" }).lean().countDocuments()
     res.render('AdminOrder', { orders, totalcount, pendingCount, deliveredCount, cancelCount, returnCount })
     }catch{
-        res.redirect('/error')
+        res.redirect('/admin/error')
     }
 }
 
@@ -295,17 +295,23 @@ const searchOrders = async (req, res) => {
     let cancelCount = await OrderModel.find({ status: "Cancelled" }).lean().countDocuments()
     res.render('AdminOrder', { orders, totalcount, pendingCount, deliveredCount, cancelCount })
     }catch{
-        res.redirect('/error')
+        res.redirect('/admin/error')
     }
 }
 
 const getChangeStatus = async (req, res) => {
-    const _id = req.params.id;
+    try{
+        const _id = req.params.id;
     const order = await OrderModel.findOne({ _id }).lean()
     res.render('changeStatus', { order })
+    }
+    catch{
+        res.redirect('/admin/error')
+    }
 }
 
 const changeStatus = async (req, res) => {
+   try{
     const _id = req.body._id
     const orders = await OrderModel.findOne({ _id }).lean()
     const newStatus = req.body.status
@@ -326,77 +332,128 @@ const changeStatus = async (req, res) => {
     await OrderModel.findByIdAndUpdate(_id, { $set: { status: newStatus,  return: false, cancel: false } })
     }
     res.redirect('/admin/orders')
+   }catch{
+    res.redirect('/admin/error')
+   }
 }
 
 const getUnListedProducts = async (req, res) => {
-    const unListedproducts = await ProductModel.find({ status: false }).lean()
+    try{
+        const unListedproducts = await ProductModel.find({ status: false }).lean()
     res.render('UnListedProducts', { unListedproducts })
+    }catch{
+        res.redirect('/admin/error')
+    }
 }
 
 const getCoupons = async (req, res) => {
+ try{
     const couponsArr = await CouponModel.find().lean()
     let coupons = couponsArr.map(item => {
         return { ...item, expiryDate: item.expiryDate.toLocaleString() }
     })
     res.render('AdminCoupon', { coupons })
+ }catch{
+    res.redirect('/admin/error')
+ }
 }
 
 const getAddcoupon = (req, res) => {
-    res.render('AddCoupons')
+    try{
+        res.render('AddCoupons')
+    }catch{
+        res.redirect('/admin/error')
+    }
 }
 
 const couponAdd = async (req, res) => {
-    const name = req.body.name
-    const code = req.body.code
-    const expiryDate = new Date(req.body.expiry)
+    try{
+
+        const name = req.body.name
+        const code = req.body.code
+        const expiryDate = new Date(req.body.expiry)
     const discount = req.body.Discount
     const coupons = new CouponModel({ name, code, expiryDate, discount })
     await coupons.save()
     res.redirect('/admin/coupons')
+    }
+    catch{
+        res.redirect('/admin/error')
+    }
 }
 
 const getdeleteCoupon = async (req, res) => {
+    try{
     const _id = req.params.id
     await CouponModel.findByIdAndDelete({ _id })
     res.redirect('/admin/coupons')
+    }
+    catch{
+        res.redirect('/admin/error')
+    }
 }
 
 const getBanner = async (req, res) => {
-    const banners = await BannerModel.find().lean()
-    res.render('AdminBanner', { banners })
-}
+    try{
+
+        const banners = await BannerModel.find().lean()
+        res.render('AdminBanner', { banners })
+    }catch{ res.redirect('/admin/error')}
+    }
 
 const getAddBanner = (req, res) => {
-    res.render('AddBanner')
+    try{
+
+        res.render('AddBanner')
+    }catch{
+        res.redirect('/admin/error')
+    }
 }
 
 const bannerAdd = (req, res) => {
-    const name = req.body.name
-    const banner = req.file.filename
-    const banners = new BannerModel({ name, banner })
-    banners.save()
-    res.redirect('/admin/banner')
-}
+    try{
+
+        const name = req.body.name
+        const banner = req.file.filename
+        const banners = new BannerModel({ name, banner })
+        banners.save()
+        res.redirect('/admin/banner')
+    }catch{
+        res.redirect('/admin/error')
+    }
+    }
 
 const getBannerDelete = async (req, res) => {
-    const _id = req.params.id
-    await BannerModel.findByIdAndDelete({ _id })
-    res.redirect('/admin/banner')
+    try{
+
+        const _id = req.params.id
+        await BannerModel.findByIdAndDelete({ _id })
+        res.redirect('/admin/banner')
+    }catch{
+        res.redirect('/admin/error')
+    }
 }
 
 const getSalesReport = async (req, res) => {
-    const orders = await OrderModel.find().lean()
-    res.render('AdminSalesReport')
-}
+    try{
+        
+        const orders = await OrderModel.find().lean()
+        res.render('AdminSalesReport')
+    }catch{
+        res.redirect('/admin/error')
+    }
+    }
 
 const filterOrder = async (req, res) => {
-    let filter = req.query.filter ?? ""
-    if (filter == "All") {
-        filter = ""
-    }
-    const ordersArr = await OrderModel.find({ status: new RegExp(filter, 'i') }).lean()
-    let orders = ordersArr.map(item => {
-        return {
+    try{
+
+        let filter = req.query.filter ?? ""
+        if (filter == "All") {
+            filter = ""
+        }
+        const ordersArr = await OrderModel.find({ status: new RegExp(filter, 'i') }).lean()
+        let orders = ordersArr.map(item => {
+            return {
             ...item, dateDelivered: item.dateDelivered.toLocaleDateString(),
             dateOrdered: item.dateOrdered.toLocaleDateString(), userId: item.userId
         }
@@ -408,21 +465,34 @@ const filterOrder = async (req, res) => {
     let deliveredCount = await OrderModel.find({ status: "Delivered" }).lean().countDocuments()
     let cancelCount = await OrderModel.find({ status: "Cancelled" }).lean().countDocuments()
     res.render('AdminOrder', { orders, totalcount, pendingCount, deliveredCount, cancelCount, returnCount })
+}catch{
+    res.redirect('/admin/error')
+}
 }
 
 const getProduct = async (req, res) => {
-    if (req.session.admin || req.session.staff) {
-        const products = await ProductModel.find({ status: true }).lean()
-        res.render('AdminProducts', { products })
+    try{
+
+        if (req.session.admin || req.session.staff) {
+            const products = await ProductModel.find({ status: true }).lean()
+            res.render('AdminProducts', { products })
     }
     else {
         res.redirect('/admin/login')
     }
+}catch{
+    res.redirect('/admin/error')
+}
 }
 
 const getAddProduct = async (req, res) => {
-    const category = await categoryModel.find().lean()
-    res.render("AddProduct", { category })
+    try{
+
+        const category = await categoryModel.find().lean()
+        res.render("AddProduct", { category })
+    }catch{
+        res.redirect('/admin/error')
+    }
 }
 
 const addProduct = async(req, res) => {
@@ -455,15 +525,25 @@ const addProduct = async(req, res) => {
 
 const getDeleteProduct = async (req, res) => {
     const _id = req.params.id;
-    await ProductModel.findByIdAndUpdate({ _id }, { $set: { status: false } })
-    res.redirect('/admin/product')
+    try{
+
+        await ProductModel.findByIdAndUpdate({ _id }, { $set: { status: false } })
+        res.redirect('/admin/product')
+    }catch{
+        res.redirect('/admin/error')
+    }
 
 }
 const getEditProduct = async (req, res) => {
-    const _id = req.params.id
-    const productDetials = await ProductModel.findOne({ _id }).lean()
-    const category = await categoryModel.find().lean()
-    res.render('EditProduct', { productDetials, category })
+    try{
+
+        const _id = req.params.id
+        const productDetials = await ProductModel.findOne({ _id }).lean()
+        const category = await categoryModel.find().lean()
+        res.render('EditProduct', { productDetials, category })
+    }catch{
+        res.redirect('/admin/error')
+    }
 }
 const editProduct = async (req, res) => {
     try{
@@ -536,19 +616,28 @@ const editProduct = async (req, res) => {
             return res.redirect('/admin/product')
         }
     }catch{
-        res.send("error")
+        res.redirect('/admin/error')
     }
 }
 const searchProduct = async (req, res) => {
-    const name = req.body.name
+    try{
+
+        const name = req.body.name
     const products = await ProductModel.find({ name: new RegExp(name, 'i') }).lean()
     res.render('AdminProducts', { products })
-
+    }catch{
+        res.redirect('/admin/error')
+    }
 }
 const getList = async (req, res) => {
-    const _id = req.params.id
-    await ProductModel.findByIdAndUpdate({ _id }, { $set: { status: true } })
-    res.redirect('/admin/product')
+    try{
+
+        const _id = req.params.id
+        await ProductModel.findByIdAndUpdate({ _id }, { $set: { status: true } })
+        res.redirect('/admin/product')
+    }catch{
+        res.redirect('/admin/error')
+    }
 }
 const adminErrorPage=(req,res)=>{
     res.render("adminErrorPage")
