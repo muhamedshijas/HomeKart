@@ -73,32 +73,29 @@
         </div>
     </div>
 
-    <table class="table mt-2" >
+    <table class="table mt-2 adminOrder" >
   <thead class="bg-dark text-white">
-    <tr>
+    <tr class="text-center">
       <th scope="col">Product</th>
-      <th scope="col">Quantity</th>
         <th scope="col">Total Price</th>
       <th scope="col">Status</th>
-      <th scope="col">Date</th>
-      <th scope="col">Delivery date</th>
       <th scope="col">User Name</th>
       <th scope="col">Payment Methord</th>
+      <th scope="col">Detilas</th>
       <th scope="col">Action</th>
+      
     </tr>
   </thead>
   <tbody>
      {{#each orders}}
 
-    <tr>
+    <tr class="text-center">
       <td>{{this.orderItems.name}}</td>
-      <td>{{this.quantity}}</td>
       <td>{{this.totalPrice}}</td>
       <td>{{this.status}}</td>
-      <td>{{this.dateOrdered}}</td>
-      <td>{{this.dateDelivered}}</td>
       <td>{{this.address.name}}</td>
       <td>{{this.paymentType}}</td>
+      <td class="viewButton"><a href="/admin/adminSingleOrder/{{this._id}}" ><i class="ri-eye-fill"></i></a> </td>    
       <td><a href="/admin/changeStatus/{{this._id}}" class="btn btn-dark">Change Status</a> </td>    
       </tr>
 {{/each}}

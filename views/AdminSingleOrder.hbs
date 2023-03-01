@@ -1,0 +1,42 @@
+<div class="navbar row text-white">
+  <div class="col-md-8">
+    <div class="row   ms-4">
+       <div class="col-md-6 logo"> <a href="/admin"> HomeKart</a> </div>
+      <div class="col-md-6 adminpanel mt-1">AdminPanel</div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="row logo">
+      <div class="col-md-6 adminlogo"><i class="ri-user-line"></i></div>
+      <div class="col-md-6 logout"><a href="/admin/logout"><i class="ri-logout-box-r-line"></i></a></div>
+    </div>
+  </div>
+</div>
+
+ <div class="container ">
+
+        <div class="row singleOrderSection mt-5">
+            <div class="col-md-5 singleOrderImage"> 
+                <img src="{{orders.orderItems.product.secure_url}}" class="img-fluid" alt="" id="mainImg">
+            </div>
+            <div class="col-md-7  userorderDetials h-100">
+                <h3>{{orders.orderItems.name}}</h3>
+                <div class="pro-quantity"><b>Quantity:{{orders.quantity}}</b></div>    
+                <b>Order Status:{{orders.status}}</b>
+                <b class="text-info">Date Ordered : {{dateOrdered}}</b>
+                <b class="text-primary">Delivery expectd by:{{dateDelivered}}</b>
+                <b>Payment Method: {{orders.paymentType}}</b>
+                <b>Discount: {{orders.discount}}</b>
+                <h4 class="text-danger">Total Price:{{orders.totalPrice}}</h4>
+                <div class="OrderAddress d-flex flex-column mt-5">
+                   <h5 class="text-secondary">Delivery Address</h5>
+                   <b> User-Name:{{orders.address.name}}</b>
+                    <b>Address:{{orders.address.Address}}</b>
+                    <b>{{orders.address.landmark}},{{orders.address.city}},{{orders.address.pincode}}</b>
+                    <b>city:{{orders.address.city}}</b>
+                   <b>Phone NO:{{orders.address.phone}}</b>
+                </div>
+     </div>
+     </div>
+ 
+    </div>

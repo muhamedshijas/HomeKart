@@ -964,6 +964,12 @@ nav a{
  flex-direction:column;
  gap: 0px !important;
 }
+.adminOrder .viewButton a{
+  text-decoration: none;
+  font-size: 20px;
+  color: #51624F;
+  
+}
 
 @media (max-width:500px) {
     .icons{

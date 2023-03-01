@@ -639,7 +639,16 @@ const getList = async (req, res) => {
         res.redirect('/admin/error')
     }
 }
+const getAdminSingleOrder=async(req,res)=>{
+    const _id=req.params.id
+    const orders=await OrderModel.findOne({_id}).lean()
+    const dateDelivered=orders.dateDelivered.toLocaleDateString()
+const dateOrdered=orders.dateOrdered.toLocaleDateString()
+    res.render('AdminSingleOrder',{orders,dateDelivered,dateOrdered})
+
+}
 const adminErrorPage=(req,res)=>{
     res.render("adminErrorPage")
   }
-module.exports = {getAddCategory,adminErrorPage,getList,getAddProduct,addProduct,getEditProduct,editProduct,getDeleteProduct,searchProduct, getProduct,getAdminHome,  getAdminUser, getBanUser, addCategory, getDeleteUser,getUnbanUser, deleteCategory,searchUser, getCategory, getOrder, getBanner, getEditCategory, editCategory, getOrders, searchOrders,getChangeStatus, changeStatus, getUnListedProducts, getCoupons, getAddcoupon, couponAdd, getdeleteCoupon, getAddBanner,bannerAdd, getBannerDelete, salesReport, getSalesReport, filterOrder}
+
+module.exports = {getAddCategory,adminErrorPage,getList,getAddProduct,addProduct,getEditProduct,editProduct,getDeleteProduct,searchProduct, getProduct,getAdminHome,  getAdminUser, getBanUser, addCategory, getDeleteUser,getUnbanUser, deleteCategory,searchUser, getCategory, getOrder, getBanner, getEditCategory, editCategory, getOrders, searchOrders,getChangeStatus, changeStatus, getUnListedProducts, getCoupons, getAddcoupon, couponAdd, getdeleteCoupon, getAddBanner,bannerAdd, getBannerDelete, salesReport, getSalesReport, filterOrder,getAdminSingleOrder}
