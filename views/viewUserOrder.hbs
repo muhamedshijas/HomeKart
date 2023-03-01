@@ -1,6 +1,6 @@
    <nav>
         <div class="logo">
-            <a href=""><h5>HomeKart</h5></a>
+            <a href="/"><h5>HomeKart</h5></a>
             <a href="/viewAllProducts/?page=1"><h5>All Products</h5></a>
         </div>
 
@@ -38,7 +38,7 @@
                 </div>
                 {{#if orders.return}}
                 <a href="/returnProduct/{{orders._id}}" class="btn btn-warning">Return</a>
-                <a href=""></a>
+                <button type="button" class="btn btn-dark mt-3" onclick="downloadInvoice()">Download Invoice</button>
                 {{else if orders.cancel}}
                 {{else if orders.returnStatus}}
                 
@@ -48,3 +48,52 @@
      </div>
  
     </div>
+
+
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <script>
+
+  let productName= '{{orders.orderItems.name}}'
+  let productQuantity= '{{orders.quantity}}'
+  let productPrice= '{{orders.orderItems.price}}'
+  let productTotal= '{{orders.totalPrice}}'
+  let orderId= '{{orders._id}}'
+  console.log(orderId)
+  let discount= '{{orders.discount}}'
+  let userName= '{{orders.address.name}}'
+  let mobile= 'orders.address.phone'
+  let address= '{{orders.address.landmark}}, {{orders.address.city}}, {{orders.address.pincode}}'
+  let dispatch= '{{dateDelivered}}'
+
+
+
+
+
+            function downloadInvoice(){
+    const { jsPDF } = window.jspdf;
+    const doc= new jsPDF();
+    doc.text(15, 20, "HomeKart Invoice");
+    doc.setFontSize(12);
+      doc.text(15, 30, "Invoice No : "+orderId);
+      doc.text(15, 40, "Name : "+userName);
+      doc.text(15, 50, "Address : "+address);
+      doc.text(15, 60, "Mobile : "+mobile);
+      doc.text(15, 70, "Date : "+dispatch);
+      doc.autoTable({
+        head: [['Product Name', 'Quantity', 'price', "total"]],
+        body: [
+              [productName, productQuantity, productPrice, productTotal],
+              ["", "", "", ""],
+              ["", "", "Discount", discount],
+              ["", "", "Total", productTotal-discount],
+              ["", "", "", ""]
+              ],
+        startY: 80
+      })
+    doc.setFontSize(14);
+      doc.text(15, doc.lastAutoTable.finalY + 70, "Thank you for the purchase . Continue shopping with us...");
+      doc.save('invoice.pdf');
+  }
+    </script>
