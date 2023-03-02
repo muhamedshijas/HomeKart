@@ -37,7 +37,7 @@
     <tbody class="text-center">
       <tr>
         {{#each categories}}
-        <th scope="row">{{@index}}</th>
+        <th scope="row">{{inc @index}}</th>
         <td>{{this.category}}</td>
         <td><a href="/admin/editCategory/{{this._id}}" class="btn btn-danger"> Edit </a>
         <a href="/admin/deleteCategory/{{this._id}}" class="btn btn-danger">  Unlist</a>

@@ -187,8 +187,9 @@ const getAddCategory = (req, res) => {
 }
 
 const addCategory = async (req, res) => {
-  try{
-    const category = req.body.category
+
+    const category = req.body.category.toLowerCase()
+    console.log(category)
     const newCategory = await categoryModel.findOne({ category: category })
     if (newCategory) {
         const errMsg = "Category Already found"
@@ -199,10 +200,11 @@ const addCategory = async (req, res) => {
         categories.save();
         res.redirect('/admin/category')
     }
-  }catch{
-    res.redirect('/admin/error')
+
+
+  
   }
-}
+
 
 const getCategory = async (req, res) => {
   try{

@@ -171,7 +171,6 @@ const checkOut = async (req, res) => {
             totalPrice=0
           }
         }
-
         let orderId = "order_" + Date.now().toString(36) + Math.random().toString(36).substr(2);
         const options = {
           method: "POST",
@@ -354,7 +353,7 @@ const paymentReturnURL = async (req, res) => {
             user:newAddress.address[0].name,
             orderItems: item,
             userId: req.session.user.id,
-            totalPrice: totalPrice,
+            totalPrice: totalPrice+40,
             quantity: cart[i].quantity,
             paymentType: payment,
             discount:discount
