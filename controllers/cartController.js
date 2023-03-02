@@ -163,6 +163,14 @@ const checkOut = async (req, res) => {
           var discount=coupon.discount
           totalPrice=totalPrice-discount
         }
+        if(req.session.wallet){
+          if(totalPrice>req.session.wallet.wallet){
+            totalPrice=totalPrice-req.session.wallet.wallet
+          }
+          else{
+            totalPrice=0
+          }
+        }
 
         let orderId = "order_" + Date.now().toString(36) + Math.random().toString(36).substr(2);
         const options = {
