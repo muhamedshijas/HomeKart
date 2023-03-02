@@ -52,8 +52,6 @@ const getAdminHome = async (req, res) => {
         }
         const online=await OrderModel.find({paymentType:"online"}).lean().countDocuments()
         const cod=await OrderModel.find({paymentType:"COD"}).lean().countDocuments()
-        console.log(online)
-        console.log(cod)
         const userCount = await UserModel.find({ $and: [{ staff: false }, { admin: false }] }).lean().countDocuments()
         const productCount = await ProductModel.find().lean().countDocuments()
         const orderCount = await OrderModel.find().lean().countDocuments()
@@ -61,7 +59,17 @@ const getAdminHome = async (req, res) => {
         const userData = await UserModel.find({ $and: [{ staff: false }, { admin: false }] }).sort({ _id: -1 }).limit(5).lean()
         const orderData = await OrderModel.find().sort({ _id: -1 }).limit(5).lean()
         const products = await ProductModel.find().sort({ _id: -1 }).limit(5).lean()
-        res.render('AdminHome', { totalRevenue, userCount, productCount, orderCount, userData, orderData, products, totalDiscount, monthlyData, monthlyReturn,online,cod})
+        let byCategory=await OrderModel.aggregate([{$group:{_id:"$orderItems.category",count:{$sum:1}}}])
+        const categoryName=byCategory.map(item=>{
+            return item._id
+        })
+        const categoryCount=byCategory.map(item=>{
+            return item.count
+        })
+        console.log(byCategory)
+        console.log(categoryName)
+        console.log(categoryCount)
+        res.render('AdminHome', { totalRevenue,categoryName,categoryCount,userCount,byCategory, productCount, orderCount, userData, orderData, products, totalDiscount, monthlyData, monthlyReturn,online,cod})
     }
     else {
         res.redirect('/admin/login')
@@ -187,7 +195,6 @@ const getAddCategory = (req, res) => {
 }
 
 const addCategory = async (req, res) => {
-
     const category = req.body.category.toLowerCase()
     console.log(category)
     const newCategory = await categoryModel.findOne({ category: category })
@@ -200,11 +207,8 @@ const addCategory = async (req, res) => {
         categories.save();
         res.redirect('/admin/category')
     }
-
-
   
   }
-
 
 const getCategory = async (req, res) => {
   try{
@@ -438,8 +442,6 @@ const getBannerDelete = async (req, res) => {
 
 const getSalesReport = async (req, res) => {
     try{
-        
-        const orders = await OrderModel.find().lean()
         res.render('AdminSalesReport')
     }catch{
         res.redirect('/admin/error')

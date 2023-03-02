@@ -80,7 +80,8 @@ const getSingleProduct = async (req, res) => {
 try{
   const _id = req.params.id
   const product = await ProductModel.findById({ _id }).lean()
-  const recomendedProducts = await ProductModel.find({ status: true }).limit(4).skip(6).lean()
+  const recomendedProducts = await ProductModel.aggregate([{ $sample: { size: 3 } }])
+  console.log(recomendedProducts)
   res.render('viewSingleProduct', { product, recomendedProducts })
 }catch{
   res.redirect('/error')

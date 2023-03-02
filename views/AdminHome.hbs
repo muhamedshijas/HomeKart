@@ -117,33 +117,49 @@
 </div>
 </div>
 
-<div class="charts-section w-100">
-<div id="chart" class="col-6 d-flex flex-column">
+<div id="chart" class=" mt-3 d-flex flex-column">
   <h4 class="text-primary"> Total Revenue</h4>
 </div>
-<div id="piechart" class="col-4 d-flex flex-column mt-3">
+<div class="charts-section w-100">
+<div id="piechart" class="col-3 d-flex flex-column mt-3">
    <h4 class="text-center text-primary">Payment Methord </h4>
 </div>
+<div id="donut" class="col-3 d-flex flex-column mt-3">
+   <h4 class="text-center text-primary">Payment Methord </h4>
+</div>
+
 </div>
 </div>
 </div>
+
+<div class="table">
+  <table>
+    <tr>
+    <th>Catefory</th>
+    <th>count</th>
+    </tr>
+    {{#each byCategory}}
+    <tr>
+<td>{{this._id}}</td>
+<td>{{this.count}}</td>
+    </tr>
+    {{/each}}
+  </table>
 </div>
-
-
-
-
-
-
-
-
 
 <script>
   console.log({{monthlyData}})
   console.log({{monthlyReturn}})
-
-
-
+  console.log({{categoryCount}})
   var userCount={{userCount}}
+
+  let categoryName=[]
+
+  {{#each categoryName}}
+  categoryName.push('{{this}}')
+  {{/each}}
+
+  console.log(categoryName)
 
   let online={{online}}
   let cod={{cod}}
@@ -218,6 +234,75 @@
         };
         var piechart = new ApexCharts(document.querySelector("#piechart"), options);
         piechart.render();
+
+
+         var options = {
+          series: [{{categoryCount}}],
+          chart: {
+          width: 380,
+          type: 'donut',
+          dropShadow: {
+            enabled: true,
+            color: '#111',
+            top: -1,
+            left: 3,
+            blur: 3,
+            opacity: 0.2
+          }
+        },
+        stroke: {
+          width: 0,
+        },
+        plotOptions: {
+          pie: {
+            donut: {
+              labels: {
+                show: true,
+                total: {
+                  showAlways: true,
+                  show: true
+                }
+              }
+            }
+          }
+        },
+        labels: categoryName,
+        dataLabels: {
+          dropShadow: {
+            blur: 3,
+            opacity: 0.8
+          }
+        },
+        fill: {
+        type: 'gradient',
+          opacity: 1,
+        },
+        states: {
+          hover: {
+            filter: 'none'
+          }
+        },
+        theme: {
+          palette: 'palette2'
+        },
+        title: {
+          text: "Favourite Movie Type"
+        },
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }]
+        };
+
+		var doughnotchart = new ApexCharts(document.querySelector("#donut"), options);
+        doughnotchart.render();
 	</script>
 
   
