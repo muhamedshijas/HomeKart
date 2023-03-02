@@ -121,31 +121,16 @@
   <h4 class="text-primary"> Total Revenue</h4>
 </div>
 <div class="charts-section w-100">
-<div id="piechart" class="col-3 d-flex flex-column mt-3">
+<div id="piechart" class="col-4 d-flex flex-column mt-3">
    <h4 class="text-center text-primary">Payment Methord </h4>
 </div>
-<div id="donut" class="col-3 d-flex flex-column mt-3">
-   <h4 class="text-center text-primary">Payment Methord </h4>
+<div id="donut" class="col-4 d-flex flex-column mt-3">
+   <h4 class="text-center text-primary">Category Wise Sales </h4>
 </div>
 
 </div>
 </div>
-</div>
-
-<div class="table">
-  <table>
-    <tr>
-    <th>Catefory</th>
-    <th>count</th>
-    </tr>
-    {{#each byCategory}}
-    <tr>
-<td>{{this._id}}</td>
-<td>{{this.count}}</td>
-    </tr>
-    {{/each}}
-  </table>
-</div>
+ 
 
 <script>
   console.log({{monthlyData}})
@@ -167,10 +152,7 @@
           series: [{
           name: 'Revenue',
           data: [{{monthlyData}}]
-        }, {
-          name: 'Return',
-          data: [{{monthlyReturn}}]
-        },],
+        }, ],
           chart: {
           type: 'bar',
           height: 350
@@ -239,7 +221,7 @@
          var options = {
           series: [{{categoryCount}}],
           chart: {
-          width: 380,
+          width: 400,
           type: 'donut',
           dropShadow: {
             enabled: true,
@@ -282,11 +264,9 @@
             filter: 'none'
           }
         },
-        theme: {
-          palette: 'palette2'
-        },
+        
         title: {
-          text: "Favourite Movie Type"
+          text: "Categories"
         },
         responsive: [{
           breakpoint: 480,
