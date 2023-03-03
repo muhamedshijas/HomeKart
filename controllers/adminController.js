@@ -59,25 +59,22 @@ const getAdminHome = async (req, res) => {
         const userData = await UserModel.find({ $and: [{ staff: false }, { admin: false }] }).sort({ _id: -1 }).limit(5).lean()
         const orderData = await OrderModel.find().sort({ _id: -1 }).limit(5).lean()
         const products = await ProductModel.find().sort({ _id: -1 }).limit(5).lean()
-        let byCategory=await OrderModel.aggregate([{$group:{_id:"$orderItems.category",count:{$sum:1}}}])
+        let byCategory = await OrderModel.aggregate([{ $group: { _id: "$orderItems.category", count: { $sum: 1 }, price: { $sum: "$orderItems.price" } } }])
         const categoryName=byCategory.map(item=>{
             return item._id
         })
         const categoryCount=byCategory.map(item=>{
             return item.count
         })
-        console.log(byCategory)
-        console.log(categoryName)
-        console.log(categoryCount)
         res.render('AdminHome', { totalRevenue,categoryName,categoryCount,userCount,byCategory, productCount, orderCount, userData, orderData, products, totalDiscount, monthlyData, monthlyReturn,online,cod})
     }
     else {
         res.redirect('/admin/login')
     }
-  }
-  catch{
-    res.redirect('/admin/error')
-}
+   }
+   catch{
+   res.redirect('/admin/error')
+ }
 }
 
 const salesReport = async (req, res) => {
@@ -106,9 +103,13 @@ const salesReport = async (req, res) => {
             const userData = await UserModel.find({ $and: [{ staff: false }, { admin: false }] }).sort({ _id: -1 }).limit(5).lean()
             const orderData = await OrderModel.find().sort({ _id: -1 }).limit(5).lean()
             const products = await ProductModel.find().sort({ _id: -1 }).limit(5).lean()
+            let byCategory = await OrderModel.aggregate([{ $group: { _id: "$orderItems.category", count: { $sum: 1 }, price: { $sum: "$orderItems.price" } } }])
+             let categoryData=byCategory.map(item=>{
+                return item
+             })
             res.render('AdminSalesReport', {
                 totalAmount, orderCount, averageRevenue, totalRevenue, userCount, productCount,
-                orderCounts, userData, orderData, products, orders, totalDiscount
+                orderCounts, userData, orderData, products, orders, totalDiscount,categoryData
             })
         }
     }catch{
@@ -442,7 +443,12 @@ const getBannerDelete = async (req, res) => {
 
 const getSalesReport = async (req, res) => {
     try{
-        res.render('AdminSalesReport')
+        let byCategory = await OrderModel.aggregate([{ $group: { _id: "$orderItems.category", count: { $sum: 1 }, price: { $sum: "$orderItems.price" } } }])
+        let categoryData=byCategory.map(item=>{
+           return item
+        })
+        console.log(byCategory)
+        res.render('AdminSalesReport',{byCategory,categoryData})
     }catch{
         res.redirect('/admin/error')
     }

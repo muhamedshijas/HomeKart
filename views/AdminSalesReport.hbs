@@ -73,14 +73,26 @@
     </tbody>
   </table>
 <button class="btn btn-success " onclick="downloadPdf()">Download in pdf</button>
+<button class="btn btn-success " onclick="downloadExcel()">Download in excel</button>
 </div>
 
 
 </div>
 </div>
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.1/xlsx.full.min.js"></script>
 <script>
+  let categoryData=[]
+{{#each byCategory}}
+categoryData.push(['{{this._id}}','{{this.count}}','{{this.price}}'])
+{{/each}}
+
+console.log(categoryData)
+
     let orders=[]
     {{#each orders}}
     orders.push(['{{this.address.name}}','{{this.orderItems.name}}','{{this.orderItems.price}}','{{this.quantity}}','{{this.discount}}','{{this.totalPrice}}'
@@ -113,4 +125,26 @@ function downloadPdf() {
       })
       doc.save('sales-report.pdf');
     }
+
+
+    function downloadExcel(){
+                let report=[
+                  {type:"Total Orders", value:totalOrders},
+                  {type:"Total Revenue", value:totalRevenue},
+                  {type:"Total Discount", value:totalDiscount},
+                  {type:"Revenue average", value:averageRevenue},
+                ]
+          
+                  var sheet1 = XLSX.utils.json_to_sheet(report);
+                  var wb = XLSX.utils.book_new();
+                  XLSX.utils.book_append_sheet(wb, sheet1, "Sales Report");
+          
+                  
+                  var sheet3 = XLSX.utils.json_to_sheet(categoryData);
+                  XLSX.utils.book_append_sheet(wb, sheet3, "categoryData");
+               
+          
+                  XLSX.writeFile(wb,'sales-report.xlsx');
+              }
+
 </script>
