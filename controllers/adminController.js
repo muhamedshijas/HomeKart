@@ -22,7 +22,7 @@ cloudinary.config({
   });
 
 const getAdminHome = async (req, res) => {
-  try{
+//   try{
     if (req.session.admin || req.session.staff) {
         const orders = await OrderModel.find().lean()
         const deliveredOrder = await OrderModel.find({ status: "Delivered" }).lean()
@@ -34,6 +34,7 @@ const getAdminHome = async (req, res) => {
         })
         const monthlyDataArray = await OrderModel.aggregate([{ $match: { status: "Delivered" } }, { $group: { _id: { $month: "$dateOrdered" }, sum: { $sum: "$totalPrice" } } }])
         const monthlyReturnArray = await OrderModel.aggregate([{ $match: { status: "Returned" } }, { $group: { _id: { $month: '$dateOrdered' }, sum: { $sum: '$totalPrice' } } }])
+       
         let monthlyDataObject = {}
         let monthlyReturnObject = {}
         monthlyDataArray.map(item => {
@@ -50,6 +51,8 @@ const getAdminHome = async (req, res) => {
         for (let i = 1; i <= 12; i++) {
             monthlyData[i - 1] = monthlyDataObject[i] ?? 0
         }
+        console.log("Hiiii")
+        console.log(monthlyData)
         const online=await OrderModel.find({paymentType:"online"}).lean().countDocuments()
         const cod=await OrderModel.find({paymentType:"COD"}).lean().countDocuments()
         const userCount = await UserModel.find({ $and: [{ staff: false }, { admin: false }] }).lean().countDocuments()
@@ -66,15 +69,27 @@ const getAdminHome = async (req, res) => {
         const categoryCount=byCategory.map(item=>{
             return item.count
         })
-        res.render('AdminHome', { totalRevenue,categoryName,categoryCount,userCount,byCategory, productCount, orderCount, userData, orderData, products, totalDiscount, monthlyData, monthlyReturn,online,cod})
+        const sd=new Date()
+        const ed=new Date(new Date().setDate(new Date().getDate() - 7))
+        const weeklyDataArray = await OrderModel.aggregate([{ $match:{$and:[{dateOrdered:{$gt:ed,$lt:sd}},{status:"Delivered"}]}}, { $group: { _id: { $dayOfWeek: "$dateOrdered" }, sum: { $sum: "$totalPrice" } } }])
+        let weeklyDataObject={}
+        weeklyDataArray.map(item => {
+            weeklyDataObject[item._id] = item.sum
+        })
+        let weeklyData = []
+        for (let i = 1; i <= 7; i++) {
+            weeklyData[i - 1] = weeklyDataObject[i] ?? 0
+        }
+        console.log(weeklyData)
+        res.render('AdminHome', {weeklyData,totalRevenue,categoryName,categoryCount,userCount,byCategory, productCount, orderCount, userData, orderData, products, totalDiscount, monthlyData, monthlyReturn,online,cod})
     }
     else {
         res.redirect('/admin/login')
     }
-   }
-   catch{
-   res.redirect('/admin/error')
- }
+//    }
+//    catch{
+//    res.redirect('/admin/error')
+//  }
 }
 
 const salesReport = async (req, res) => {
