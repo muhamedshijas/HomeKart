@@ -22,7 +22,7 @@ cloudinary.config({
   });
 
 const getAdminHome = async (req, res) => {
-//   try{
+  try{
     if (req.session.admin || req.session.staff) {
         const orders = await OrderModel.find().lean()
         const deliveredOrder = await OrderModel.find({ status: "Delivered" }).lean()
@@ -86,10 +86,10 @@ const getAdminHome = async (req, res) => {
     else {
         res.redirect('/admin/login')
     }
-//    }
-//    catch{
-//    res.redirect('/admin/error')
-//  }
+   }
+   catch{
+   res.redirect('/admin/error')
+ }
 }
 
 const salesReport = async (req, res) => {

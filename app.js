@@ -30,6 +30,6 @@ Handlebars.registerHelper("inc", function(value, options)
 });
        
 app.listen(2255,()=>{
-    console.log("started on 2555")
+    console.log("started on 2255")
 })
       

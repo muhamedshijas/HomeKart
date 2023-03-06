@@ -324,7 +324,7 @@ const paymentReturnURL = async (req, res) => {
               quantity: (-1 * cart[i].quantity)
             }
           })
-          totalPrice = (cart[i].quantity * item.price) + 40
+          totalPrice = (cart[i].quantity * item.price)
           let discount
           if (req.session.coupon) {
             let couponCode = req.session.coupon.code
@@ -374,7 +374,7 @@ const paymentReturnURL = async (req, res) => {
       catch (err) {
       console.log(err)
       return res.send("payment failed")
-    }
+    }  
 }
 const getApplyCoupon = (req, res) => {
   res.render('coupon')
