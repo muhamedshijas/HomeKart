@@ -64,7 +64,9 @@ const getUserSignup = async (req, res) => {
 const userSignup = async (req, res) => {
     try{
       const email = req.body.email
-    const blockuser = await UserModel.findOne({ $and: [{ email: email }, { ban: true }] });
+      const users= await UserModel.find({ban:true}).lean()
+      console.log(users);
+    const blockuser = await banUserModel.findOne({email:email})
     if (blockuser) {
   
       return res.render("UserSignup", { banErr: "You were banned!!!" })
