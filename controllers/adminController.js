@@ -51,8 +51,6 @@ const getAdminHome = async (req, res) => {
         for (let i = 1; i <= 12; i++) {
             monthlyData[i - 1] = monthlyDataObject[i] ?? 0
         }
-        console.log("Hiiii")
-        console.log(monthlyData)
         const online=await OrderModel.find({paymentType:"online"}).lean().countDocuments()
         const cod=await OrderModel.find({paymentType:"COD"}).lean().countDocuments()
         const userCount = await UserModel.find({ $and: [{ staff: false }, { admin: false }] }).lean().countDocuments()
