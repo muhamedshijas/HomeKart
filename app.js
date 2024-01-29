@@ -5,7 +5,7 @@ const path = require("path")
 const UserRouter=require('./routers/UserRouter')
 const AdminRouter=require('./routers/AdminRouter')
 const morgan=require("morgan")
-const dbConnect =require("./dbConnect")
+const dbConnect =require("./dbConnect") 
 const Handlebars=require('handlebars')
 require("dotenv").config()
 dbConnect();

@@ -91,6 +91,7 @@ const userSignup = async (req, res) => {
       }
       else {
         randomOtp = Math.floor(Math.random() * 1000000)
+        console.log(randomOtp);
         req.session.otp = randomOtp;
         let transporter = nodemailer.createTransport({
           host: "smtp.gmail.com", 
